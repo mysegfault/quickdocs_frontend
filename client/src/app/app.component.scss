@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Arial';
+    src: url('../fonts/arial.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('../fonts/Helvetica.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Impact';
+    src: url('../fonts/impact.ttf') format('truetype');
+  }
+
+    // font-family: 'Helvetica', sans-serif;
+    // font-family: 'Impact', sans-serif;
+    // font-family: 'Arial', sans-serif;
+
+
+section {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
