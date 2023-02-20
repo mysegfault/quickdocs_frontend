@@ -9,6 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 import { ProgramsComponent } from './components/programs/programs.component';
 import { ProgRectoComponent } from './components/prog-recto/prog-recto.component';
 import { ProgVersoComponent } from './components/prog-verso/prog-verso.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OverviewComponent } from './components/overview/overview.component';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+
 
 
 @NgModule({
@@ -17,15 +21,34 @@ import { ProgVersoComponent } from './components/prog-verso/prog-verso.component
     LoginComponent,
     ProgramsComponent,
     ProgRectoComponent,
-    ProgVersoComponent
+    ProgVersoComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('659524719870-b9fnv4rch4mhiimo6aup8ufak43hes38.apps.googleusercontent.com')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
