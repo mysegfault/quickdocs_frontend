@@ -1,7 +1,7 @@
 export class Users {
 
-    readonly user_id?: number;
-    google_id?:number;
+    readonly google_id?: string;
     user_mail?: string;
+    user_mame?: string;
 
 }

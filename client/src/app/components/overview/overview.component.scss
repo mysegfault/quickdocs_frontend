@@ -26,11 +26,18 @@
     .welcome {
         display: flex;
         justify-content: center;
+        flex-direction: column;
         align-items: center;
         height: 70%;
         color: white;
+
+        .btn_access {
+            margin-top: 30px;
+        }
+
     }
     
 }
+
 
 

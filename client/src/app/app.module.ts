@@ -12,6 +12,9 @@ import { ProgVersoComponent } from './components/prog-verso/prog-verso.component
 import { HttpClientModule } from '@angular/common/http';
 import { OverviewComponent } from './components/overview/overview.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import {MatButtonModule} from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -30,7 +33,10 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
     BrowserAnimationsModule,
     MatSlideToggleModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
     {

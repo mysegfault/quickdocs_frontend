@@ -5,11 +5,12 @@
     </div>
 
     <div class="welcome">
-        <h3>Bienvenue</h3>
-        <!-- dans le h2, inclure le nom de la personne -->
+        <h3>Bienvenue sur ton application {{user_name}}</h3>
 
-        <!-- "Accédez à vos programmes" mettre dans un bouton -->
-
+        <div class="btn_access" (click)="onClickToPrograms()">
+            <button mat-raised-button>Accéder à mes programmes</button>
+        </div>
+    
 
     </div>
 
