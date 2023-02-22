@@ -9,13 +9,12 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ConnexionService {
 
-  // backend = `${environment.API_URL}`;
-  backend = "http://localhost:3000"
+  backend = `${environment.API_URL}`;
 
   constructor(private _http: HttpClient) { }
 
-  getConnection(): Observable<any> {
-    return this._http.get(`${this.backend}/google`)
+  getAllLists(): Observable<any> {
+    return this._http.get(`${this.backend}/programmes`)
   }
 
 }

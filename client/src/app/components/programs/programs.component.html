@@ -1,1 +1,22 @@
-<p>programs works!</p>
+<section class="programs">
+
+    <h3>Mes programmes de formation</h3>
+
+    <div class="list_programs" *ngIf="allList">
+
+        <div class="one_card" *ngFor="let list of allList"> 
+            <mat-card class="cards">
+                <mat-card-header>
+                  <mat-card-title>{{list}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-actions>
+                  <button mat-raised-button>RECTO</button>
+                  <button mat-raised-button>VERSO</button>
+                </mat-card-actions>
+              </mat-card>
+        </div>
+
+    </div>
+
+
+</section>

@@ -1,0 +1,27 @@
+.programs {
+    width: 100%;
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+
+    h3 {
+        font-size: clamp(1.25rem, 0.9926rem + 1.1765vw, 1.875rem);
+        margin-bottom: 20px;
+    }
+
+    .list_programs {
+        .one_card {
+            margin-bottom: 15px;
+            color: black;
+            font-size: 15px;
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}

@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,18 +10,33 @@ import { Router } from '@angular/router';
 export class OverviewComponent implements OnInit {
 
   user_name!: any;
+  showWelcome: boolean = true;
 
-  constructor(private _route: Router) { }
+  constructor(private _route: Router, private _authService: SocialAuthService) { }
 
   ngOnInit() {
+    
     this.user_name = localStorage.getItem('user_name');
+    const token = localStorage.getItem('token');
+
+    if (this._route.url === '/home/programmes') {
+      this.showWelcome = false;
+    }
+
   }
 
 
-  /** Permet de rediriger vers la page des programmes
+  /** Pour se déconnecter
    */
-  onClickToPrograms() {
-    this._route.navigate(['/programmes'])
+  onLogOut() {
+    this._authService.signOut();
+    localStorage.clear();
+    this._route.navigate(['/login']);
+  }
+
+
+  onClickBtn() {
+    this.showWelcome = false;
   }
 
 

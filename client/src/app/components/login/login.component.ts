@@ -77,7 +77,9 @@ export class LoginComponent implements OnInit {
           if (localStorage.getItem('token')) {
             localStorage.clear();
           }
-                 
+            
+          // location.reload();
+          // this._route.navigate(['/'])
         }
       });
     })

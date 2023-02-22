@@ -15,12 +15,12 @@ export class AuthService {
   constructor(private _http: HttpClient) { }
 
   postIdGoogle(id: string, user: SocialUser): Observable<any> {
-    return this._http.post(`${this.backend}/user/`+ id, user);
+    return this._http.post(`${this.backend}/user/` + id, user);
   }
 
-    /** Cette méthode permet de récupérer le token stocké dans le localstorage pour l'auth.interceptor
-   */
-    getToken() {
-      return localStorage.getItem('token')
-    }
+  /** Cette méthode permet de récupérer le token stocké dans le localstorage pour l'auth.interceptor
+ */
+  getToken() {
+    return localStorage.getItem('token')
+  }
 }

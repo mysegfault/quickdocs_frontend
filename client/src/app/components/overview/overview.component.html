@@ -1,17 +1,38 @@
 <section class="overview">
 
-    <div class="logo">
-        <img src="../../../assets/logos/alpix-logo-transparent.png" alt="Logo Alpix">
-    </div>
-
-    <div class="welcome">
-        <h3>Bienvenue sur ton application {{user_name}}</h3>
-
-        <div class="btn_access" (click)="onClickToPrograms()">
-            <button mat-raised-button>Accéder à mes programmes</button>
-        </div>
     
 
+    <div class="header">
+
+        <div class="logo">
+            <img src="../../../assets/logos/alpix-logo-transparent.png" alt="Logo Alpix">
+        </div>
+
+        <div class="menu">
+            <p>Quickdocs</p>
+        </div>
+
+        <!-- pour se déconnecter -->
+        <div class="escape" (click)="onLogOut()">
+            <mat-icon>exit_to_app</mat-icon>
+        </div>
+        
     </div>
+
+
+
+
+    <div class="router-outlet" *ngIf="showWelcome">
+        <h3>Bienvenue sur ton application {{user_name}}</h3>
+
+        <a routerLink="programmes" routerLinkActive="active" class="btn_access" (click)="onClickBtn()">
+            <button mat-raised-button>Accéder aux programmes</button>
+        </a>
+    </div>
+    
+    <router-outlet></router-outlet>
+
+    
+
 
 </section>

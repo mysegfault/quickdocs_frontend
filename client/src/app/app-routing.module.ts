@@ -5,25 +5,22 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { ProgRectoComponent } from './components/prog-recto/prog-recto.component';
 import { ProgVersoComponent } from './components/prog-verso/prog-verso.component';
 import { ProgramsComponent } from './components/programs/programs.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: OverviewComponent,
+  { path: 'home', component: OverviewComponent, canActivate:[AuthGuard],
     children:
-      [{ path: 'programmes', component: ProgramsComponent,
-          children:
-            [{ path: 'programme_recto', component: ProgRectoComponent },
-            { path: 'programme_verso', component: ProgVersoComponent }]
-      }]
-  },
+      [{ path: 'programmes', component: ProgramsComponent, canActivate:[AuthGuard]}]
+  }
 ];
 
-
-// {path:'programmes', component: ProgramsComponent, canActivate:[AuthGuard],
+// ,
 // children:
-//   [{path:'programme_recto', component: ProgRectoComponent, canActivate:[AuthGuard]},
-//   {path:'programme_verso', component: ProgVersoComponent, canActivate:[AuthGuard]}]}
+// [{ path: 'programme_recto', component: ProgRectoComponent, canActivate:[AuthGuard] },
+// { path: 'programme_verso', component: ProgVersoComponent, canActivate:[AuthGuard] }]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
