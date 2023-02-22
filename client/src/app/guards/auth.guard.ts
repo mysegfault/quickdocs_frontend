@@ -16,13 +16,15 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
      
+      console.log('auth guard', route, state)
+
       // On récupère le token pour avoir accès aux autres pages.
       const token = this._authService.getToken()
       if (token) {
         return true;  //  donne accès
       } else {
         this._snackBar.open('Vous n\'avez pas accès à la page', 'ok')
-        return this._router.navigate(['/home']) // retourne à l'overview'
+        return this._router.navigate(['/home']) // retourne à l'overview
       }
 
   }

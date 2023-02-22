@@ -1,14 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { LoginComponent } from './components/login/login.component';
 import { ProgramsComponent } from './components/programs/programs.component';
-import { ProgRectoComponent } from './components/prog-recto/prog-recto.component';
-import { ProgVersoComponent } from './components/prog-verso/prog-verso.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OverviewComponent } from './components/overview/overview.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
@@ -18,6 +15,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { ProgPDFComponent } from './components/prog-pdf/prog-pdf.component';
 
 
 
@@ -26,9 +24,8 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     LoginComponent,
     ProgramsComponent,
-    ProgRectoComponent,
-    ProgVersoComponent,
-    OverviewComponent
+    OverviewComponent,
+    ProgPDFComponent
   ],
   imports: [
     BrowserModule,

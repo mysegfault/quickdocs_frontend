@@ -22,15 +22,13 @@
 
 
 
-    <div class="router-outlet" *ngIf="showWelcome">
+    <div class="bienvenue">
+
         <h3>Bienvenue sur ton application {{user_name}}</h3>
 
-        <a routerLink="programmes" routerLinkActive="active" class="btn_access" (click)="onClickBtn()">
-            <button mat-raised-button>Accéder aux programmes</button>
-        </a>
+        <button mat-raised-button (click)="onClickBtn()">Accéder aux programmes</button>
+
     </div>
-    
-    <router-outlet></router-outlet>
 
     
 

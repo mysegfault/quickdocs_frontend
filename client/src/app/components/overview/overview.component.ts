@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class OverviewComponent implements OnInit {
 
   user_name!: any;
-  showWelcome: boolean = true;
 
   constructor(private _route: Router, private _authService: SocialAuthService) { }
 
@@ -19,24 +18,23 @@ export class OverviewComponent implements OnInit {
     this.user_name = localStorage.getItem('user_name');
     const token = localStorage.getItem('token');
 
-    if (this._route.url === '/home/programmes') {
-      this.showWelcome = false;
-    }
-
   }
 
 
-  /** Pour se déconnecter
-   */
+  /** Méthode pour se déconnecter */
   onLogOut() {
+
     this._authService.signOut();
     localStorage.clear();
     this._route.navigate(['/login']);
+
   }
 
-
+ /** Cette méthode permet de diriger vers la liste des programmes */
   onClickBtn() {
-    this.showWelcome = false;
+
+    this._route.navigate(['/programmes'])
+    
   }
 
 

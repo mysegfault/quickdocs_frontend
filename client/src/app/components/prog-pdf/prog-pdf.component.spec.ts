@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgVersoComponent } from './prog-verso.component';
+import { ProgPDFComponent } from './prog-pdf.component';
 
-describe('ProgVersoComponent', () => {
-  let component: ProgVersoComponent;
-  let fixture: ComponentFixture<ProgVersoComponent>;
+describe('ProgPDFComponent', () => {
+  let component: ProgPDFComponent;
+  let fixture: ComponentFixture<ProgPDFComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProgVersoComponent ]
+      declarations: [ ProgPDFComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProgVersoComponent);
+    fixture = TestBed.createComponent(ProgPDFComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

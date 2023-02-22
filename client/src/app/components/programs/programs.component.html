@@ -1,22 +1,45 @@
 <section class="programs">
 
+  <div class="header">
+
+    <div class="logo" (click)="onRedirectHome()">
+      <img src="../../../assets/logos/alpix-logo-transparent.png" alt="Logo Alpix">
+    </div>
+
+    <!-- pour revenir en arrière -->
+    <div class="back" (click)="onGoBack()">
+      <mat-icon>keyboard_return</mat-icon>
+      <p>Liste des programmes</p>
+    </div>
+
+  </div>
+
+
+  <div *ngIf="showList">
+
     <h3>Mes programmes de formation</h3>
 
     <div class="list_programs" *ngIf="allList">
 
-        <div class="one_card" *ngFor="let list of allList"> 
-            <mat-card class="cards">
-                <mat-card-header>
-                  <mat-card-title>{{list}}</mat-card-title>
-                </mat-card-header>
-                <mat-card-actions>
-                  <button mat-raised-button>RECTO</button>
-                  <button mat-raised-button>VERSO</button>
-                </mat-card-actions>
-              </mat-card>
-        </div>
+      <div class="one_card" *ngFor="let list of allList">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{list}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-raised-button [routerLink]="['/programmes/programme_pdf']" routerLinkActive="active"
+              class="btn_access" (click)="onClickBtn()">OUVRIR</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
 
     </div>
 
+    <!-- <div class="list_programs" *ngIf="!allList">
+      <p>Désolée, vous n'avez pas encore de programmes</p>
+    </div> -->
+  </div>
+
+  <router-outlet></router-outlet>
 
 </section>
