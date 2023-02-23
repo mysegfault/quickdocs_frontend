@@ -4,12 +4,67 @@
     <div class="PDF_to_print">
 
         <div class="page_un">
-            <p>Ici, la page 1</p>
-            <!-- <p>{{}}</p> -->
+
+            <!-- entete recto -->
+            <div class="entete_recto">
+                <img [src]="program.photo_entete_recto" alt="photo d'entête de la page recto" class="photo_entete_recto">
+
+                <div class="rectangle_entete">
+                    <p>PROGRAMME DE FORMATION</p>
+                    <p class="titre_program">{{program.titre_programme}}</p>
+                    <p class="chapeau_titre">{{program.chapeau_titre}}</p>
+                    <p class="version">{{program.version_programme}}</p>
+                </div>
+
+            </div>
+
+            <!-- centre recto-->
+            <div class="centre_recto">
+
+                <div class="left_recto">
+                    <div class="left_hight_recto">
+                        <img [src]="program.logo" alt="photo studio" class="logo">
+                        <p>{{program.introduction}}</p>
+                    </div>
+                    <div class="left_bottom_recto">
+                        <p class="chapeau">{{program.chapeau_introduction}}</p>
+                        <p class="prix">{{program.prix_formation}}</p>
+                        <p class="prix">+ {{program.frais_dossier}}</p>
+                        <img [src]="program.photo_cont_recto" alt="photo studio alpix" class="photo_recto">
+                        <p class="titre_photo_recto">{{program.titre_photo_recto}}</p>
+                        <p class="sous_titre_recto">{{program.sous_titre_photo_recto}}</p>
+                    </div>
+                </div>
+
+                <!-- footer recto-->
+                <div class="right_recto">
+                    <p class="sous_titre">{{program.intit_objectifs}}</p>
+                    <p class="cont_sous_titre">{{program.cont_objectifs}}</p>
+                    <p class="sous_titre">{{program.intit_duree}}</p>
+                    <p class="cont_sous_titre">{{program.cont_duree}}</p>
+                    <p class="sous_titre">{{program.intit_dates}}</p>
+                    <p class="cont_sous_titre">{{program.cont_dates}}</p>
+                    <p class="sous_titre">{{program.intit_public}}</p>
+                    <p class="cont_sous_titre">{{program.cont_public}}</p>
+                    <p class="sous_titre">{{program.intit_prerequis}}</p>
+                    <p class="cont_sous_titre">{{program.cont_pre_requis}}</p>
+                    <p class="cont_plus">{{program.sous_prerequis}}</p>
+
+                </div>
+
+            </div>
+
+            <div class="bottom_recto">
+                <p class="titre_footer">{{program.titre_footer}}</p>
+                <p>{{program.footer}}</p>
+            </div>
+
         </div>
 
         <div class="page_deux">
-            <p>Ici, la page 2</p>
+
+            <img [src]="program.photo_entete_verso" alt="photo d'entête de la page verso" class="photo_entete_recto">
+            <img [src]="program.photo_cont_verso" alt="photographe" class="photo_verso">
         </div>
 
     </div>

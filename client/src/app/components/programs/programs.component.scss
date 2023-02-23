@@ -37,7 +37,8 @@
             
             img {
                 max-height: 50px;
-                padding-left: 15px;                
+                padding-left: 15px; 
+                cursor: pointer;               
             }
         }
         @media only screen and (max-width: 800px) {
@@ -52,10 +53,12 @@
             align-items: center;
             justify-content: center;
             width: 10%;
-            margin-top: 10px;
+            margin-top: 15px;
+            cursor: pointer;  
 
             p{
-                font-size: 10px;
+                font-size: 9px;
+                line-height: 10px;
             }
         }
         @media only screen and (max-width: 800px) {

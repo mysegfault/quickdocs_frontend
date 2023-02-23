@@ -1,53 +1,242 @@
 .programme_pdf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 5%;
+    background-color: black;
+    color: black;
+    box-sizing: border-box;
+
+    p {
+        font-family: 'Helvetica', sans-serif;
+        line-height: 1.5em;
+        margin: 0.5em;
+        font-size: 12px;
+    }
+
+    // zone du print/PDF
+    .PDF_to_print {
+        width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        background-color: black;
-        color: black;
-    
-        h1, h2, h3, h4 {
-            font-family: 'Helvetica', sans-serif;
-            font-size: clamp(1.25rem, 0.9926rem + 1.1765vw, 1.875rem);
-            margin-bottom: 40px;
-            margin-top: 20px;
-            text-align: center;
-        }
-    
-        p{
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-        }
 
-        .PDF_to_print {
+        // les deux pages à print
+        .page_un,
+        .page_deux {
+            background-color: white;
+            padding: 40px;
             margin: 20px;
-            width: 90%;
-            height: auto;
+            width: 793.5px;
+            height: 1122.5px;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
 
-            .page_un, .page_deux {
-                background-color: white;
-                padding: 10%;
-                margin: 20px;
-                width: 80%;
-                height: auto;
+        // page 1
+        // entete du recto
+        .entete_recto {
+            width: 100%;
+            height: 30%;
+            display: flex;
+            position: relative;
+
+            .photo_entete_recto {
+                width: 100%;
+                height: 100%;
+
+            }
+
+            .rectangle_entete {
+                width: 65%;
+                height: 40%;
+                border: 2px solid white;
+                border-radius: 3px;
+                background-color: #353535;
+                position: absolute;
+                top: 35%;
+                color: #fab471;
+                align-items: center;
+                padding: 1%;
+
+                .titre_program {
+                    position: absolute;
+                    z-index: 2;
+                    color: #fe7f13;
+                    text-transform: uppercase;
+                    font-size: 20px;
+                    margin-top: 20px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    margin-top: 5px;
+                    margin-left: 6px;
+                }
+                p{
+                    color: black;
+                    margin-bottom: 0;
+                    font-size: 15px
+                }
+                .chapeau_titre, .version {
+                    color: black;
+                    margin-top: 20px;
+                    font-size: 12px;
+                }
+                .chapeau_titre {
+                    margin-top: 40px;
+                }
+                .version {
+                    text-align: end;
+                    margin-top: 10px;
+                }
+                
             }
         }
 
-        .btn_pdf {
-            width: 200px;
-            height: 40px;
-            padding: 10px;
+        // Milieu de la page recto
+        .centre_recto {
             display: flex;
-            align-items: center;
-            background-color: #FFAB61;
-            border-radius: 10px;
-            text-align: center;
-            text-transform: uppercase;
-            margin-top: 30px;
+            padding: 2px;
+            width: 99.7%;
+            height: 65%;
+
+            .left_recto{
+                display: flex;
+                flex-direction: column;
+                font-size: 11px;
+                width: 70%;
+
+                .left_hight_recto{
+                    display: flex;
+                    padding: 5px;
+                    margin-bottom: 0;
+
+                    img {
+                        width: 150px;
+                        margin-right: 5px;
+                        margin-bottom: 0;
+                    }
+                    p {
+                        text-align: justify;
+                        padding: 10px;
+                        margin-bottom: 0;
+                    }
+                }
+                
+                .left_bottom_recto {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    
+                    .chapeau {
+                        font-weight: 600;
+                        width: 90%;
+                        margin-top: 0;
+                        margin-bottom: 5px;
+                        align-self: center;
+                    }
+    
+                    .prix {
+                        color: #fe7f13;
+                        font-weight: 600;
+                        margin: 0;
+                    }
+
+                    img {
+                        margin-top: 5px;
+                        width: 200px;
+                        align-self: center;
+                    }
+
+                    .titre_photo_recto, .sous_titre_recto {
+                        color: #fe7f13;
+                        margin: 0;
+                        width: 300px;
+                        align-self: center;
+                        font-size: 10px
+                    }
+
+                    .titre_photo_recto {
+                        font-weight: 700;
+                    }
+
+                }
+            }
+
+            .right_recto{
+                background-color: #353535;
+                padding: 10px;
+                padding-top: 30px;
+                color: white;
+                width: 29.7%;
+
+                .sous_titre {
+                    color:#fe7f13;
+                    font-weight: 600;
+                    line-height: 0.5em;
+                    margin-top: 1em;
+                    font-size: 12px;
+                }
+
+                .cont_sous_titre{
+                    line-height: 1.5em;
+                }
+
+                .cont_plus{
+                    font-size: 9px;
+                    font-style: italic;
+                    line-height: 1.5em;
+                }
+
+            }
+
+
+
+
         }
+
+        // Footer recto
+        .bottom_recto {
+            width: 96%;
+            height: 60px;
+            background-color: #fe7f13;
+            padding: 2%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 5%;
+            
+            .titre_footer{
+                font-weight: 800;
+                font-size: 12px;
+                line-height: 0;
+            }
+
+            p {
+                font-size: 10px;
+            }
+
+        }
+
+    }
+
+    .btn_pdf {
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        background-color: #FFAB61;
+        border-radius: 10px;
+        text-align: center;
+        text-transform: uppercase;
+        margin-top: 30px;
+    }
 
 
 }

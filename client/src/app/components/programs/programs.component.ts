@@ -12,13 +12,13 @@ export class ProgramsComponent implements OnInit {
   allList!: any[];
   showList: boolean = true;
 
-  constructor( private _programServ: ConnexionService, private _route: Router ) { }
+  constructor( private _programServ: ConnexionService, private _route: Router) { }
  
   ngOnInit() {
 
     this._programServ.getAllLists().subscribe((listsFromBackend: any[])=>{
       console.log(listsFromBackend);
-      this.allList = listsFromBackend
+      this.allList = listsFromBackend;
     })
 
     if (this._route.url === '/programmes/programme_pdf') {
@@ -29,9 +29,15 @@ export class ProgramsComponent implements OnInit {
 
   
   /** Cette méthode est situé sur le bouton du router "ouvrir" et elle permet de ne plus afficher la liste des programmes */
-  onClickBtn() {
+  onOpenProgram(i: number) {
 
     this.showList = false;
+    // On ajuste l'index à +2 car : +1 pour les index de tableau quiccommence à 0 a lors que la feuille de calcul commence à 1 et +1 car la première lignes de cette feuille de calcul commence par les titres.
+    const idList = i+2;
+    console.log(idList);
+    const programID = JSON.stringify(idList)
+    // On stocke l'id dans le localstorage pour le récupérer pour la page programme_pdf
+    localStorage.setItem('iprogramID', programID)
 
   }
 
@@ -40,6 +46,7 @@ export class ProgramsComponent implements OnInit {
   onGoBack() {
 
     this._route.navigate(['/programmes'])
+    this.showList = true;
 
   }
 

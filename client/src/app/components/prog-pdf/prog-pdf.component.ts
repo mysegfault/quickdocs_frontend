@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Programs } from 'src/app/models/programs.model';
+import { ConnexionService } from 'src/app/services/connexion.service';
 
 @Component({
   selector: 'app-prog-pdf',
@@ -7,16 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgPDFComponent implements OnInit {
 
-  constructor( 
-    
-   ) { }
- 
+  idList = localStorage.getItem('iprogramID')
+  program!: Programs;
+
+  constructor(private _progService: ConnexionService) { }
+
   ngOnInit() {
 
+    console.log('idList :', this.idList);
+
+    this._progService.getOneList(this.idList).subscribe((returnProgram: Programs)=>{
+      console.log(returnProgram);
+      this.program = returnProgram;
+    })
+
   }
+
+
+
+
   /** Cette méthode permet de générer le PDF à partir du HTML*/
   onGeneratePdf() {
-    
+
   }
 
 }

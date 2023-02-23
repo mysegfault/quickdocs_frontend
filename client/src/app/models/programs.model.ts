@@ -8,7 +8,9 @@ export class Programs {
     chapeau_introduction?: string; 
     prix_formation?: string; 
     frais_dossier?: string; 
+    titre_photo_recto?: string;
     sous_titre_photo_recto?: string; 
+    titre_footer?:string;
     footer?: string; 
     intit_objectifs?: string; 
     cont_objectifs?: string; 

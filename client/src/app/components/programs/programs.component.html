@@ -21,25 +21,23 @@
 
     <div class="list_programs" *ngIf="allList">
 
-      <div class="one_card" *ngFor="let list of allList">
+      <div class="one_card" *ngFor="let list of allList; let i = index">
         <mat-card>
           <mat-card-header>
             <mat-card-title>{{list}}</mat-card-title>
           </mat-card-header>
           <mat-card-actions>
             <button mat-raised-button [routerLink]="['/programmes/programme_pdf']" routerLinkActive="active"
-              class="btn_access" (click)="onClickBtn()">OUVRIR</button>
+              class="btn_access" (click)="onOpenProgram(i)">OUVRIR</button>
           </mat-card-actions>
         </mat-card>
       </div>
 
     </div>
 
-    <!-- <div class="list_programs" *ngIf="!allList">
-      <p>Désolée, vous n'avez pas encore de programmes</p>
-    </div> -->
   </div>
 
   <router-outlet></router-outlet>
+
 
 </section>
