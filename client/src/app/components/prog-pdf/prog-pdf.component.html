@@ -3,11 +3,13 @@
 
     <div class="PDF_to_print">
 
+        <!-- Première page -->
         <div class="page_un">
 
             <!-- entete recto -->
             <div class="entete_recto">
-                <img [src]="program.photo_entete_recto" alt="photo d'entête de la page recto" class="photo_entete_recto">
+                <img [src]="program.photo_entete_recto" alt="photo d'entête de la page recto"
+                    class="photo_entete_recto">
 
                 <div class="rectangle_entete">
                     <p>PROGRAMME DE FORMATION</p>
@@ -18,9 +20,9 @@
 
             </div>
 
-            <!-- centre recto-->
+            <!-- centre recto -->
             <div class="centre_recto">
-
+                <!-- centre recto gauche -->
                 <div class="left_recto">
                     <div class="left_hight_recto">
                         <img [src]="program.logo" alt="photo studio" class="logo">
@@ -36,7 +38,7 @@
                     </div>
                 </div>
 
-                <!-- footer recto-->
+                <!-- centre recto droit -->
                 <div class="right_recto">
                     <p class="sous_titre">{{program.intit_objectifs}}</p>
                     <p class="cont_sous_titre">{{program.cont_objectifs}}</p>
@@ -49,27 +51,72 @@
                     <p class="sous_titre">{{program.intit_prerequis}}</p>
                     <p class="cont_sous_titre">{{program.cont_pre_requis}}</p>
                     <p class="cont_plus">{{program.sous_prerequis}}</p>
-
                 </div>
 
             </div>
 
-            <div class="bottom_recto">
+            <!-- footer recto-->
+            <div class="bottom">
                 <p class="titre_footer">{{program.titre_footer}}</p>
                 <p>{{program.footer}}</p>
+                <p class="pagination">1/2</p>
+            </div>
+        </div>
+
+
+        <!-- Deuxième page -->
+        <div class="page_deux">
+            <!-- entete verso -->
+            <div class="entete_verso">
+                <img [src]="program.photo_entete_verso" alt="photo d'entête de la page verso"
+                    class="photo_entete_verso">
+            </div>
+
+
+            <!-- centre verso -->
+            <div class="centre_verso">
+                <!-- centre verso gauche -->
+                <div class="left_verso">
+                    <p class="titre_verso">{{program.intitule_page_verso}}</p>
+                    <p class="sous_titre_verso">{{program.chapeau_intitule_verso}}</p>
+                    <p class="titre_prog">{{program.titre_programme_generique}}</p>
+                    <p class="cont_prog">{{program.contenu_programme_generique}}</p>
+                    <p class="titre_prog">{{program.titre_programme_autre}}</p>
+                    <p class="cont_prog">{{program.contenu_programme_autre}}</p>
+                    <img [src]="program.photo_cont_verso" alt="photographe" class="photo_verso">
+                    <p class="sous_titre_photo_verso">{{program.nom_formateur}}</p>
+                    <p class="sous_titre_photo_verso">{{program.metier}}</p>
+                    <p class="desc_formateur">{{program.information_formateur}}</p>
+                    
+                </div>
+
+                <!-- centre verso droit -->
+                <div class="right_verso">
+                    <p class="sous_titre">{{program.intit_moyens_peda}}</p>
+                    <p class="cont_sous_titre">{{program.cont_moyens_peda}}</p>
+                    <p class="sous_titre">{{program.intit_accessibilite}}</p>
+                    <p class="cont_sous_titre">{{program.cont_accessibilite}}</p>
+                    <p class="sous_titre">{{program.intit_delai}}</p>
+                    <p class="cont_sous_titre">{{program.cont_delai}}</p>
+                    <p class="sous_titre">{{program.intit_qualite}}</p>
+                    <p class="cont_sous_titre">{{program.cont_qualite}}</p>                  
+                </div>
+
+            </div>
+
+
+            <!-- footer verso-->
+            <div class="bottom">
+                <p class="titre_footer">{{program.titre_footer}}</p>
+                <p>{{program.footer}}</p>
+                <p class="pagination">2/2</p>
             </div>
 
         </div>
 
-        <div class="page_deux">
-
-            <img [src]="program.photo_entete_verso" alt="photo d'entête de la page verso" class="photo_entete_recto">
-            <img [src]="program.photo_cont_verso" alt="photographe" class="photo_verso">
-        </div>
-
     </div>
 
-
+    <!-- bouton pour générer le PDF -->
     <button mat-raised-button class="btn_pdf" (click)="onGeneratePdf()">Générer le pdf</button>
 
 
