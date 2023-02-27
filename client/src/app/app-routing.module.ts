@@ -10,11 +10,8 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: OverviewComponent },
-  { path: 'programmes', component: ProgramsComponent,
-    children: [
-      { path: 'programme_pdf', component: ProgPDFComponent }
-    ]
-  }
+  { path: 'programmes', component: ProgramsComponent },
+  { path: 'programme_pdf', component: ProgPDFComponent }
 ];
 
 // canActivate: [AuthGuard]

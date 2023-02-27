@@ -10,20 +10,17 @@ import { Router } from '@angular/router';
 export class ProgramsComponent implements OnInit {
 
   allList!: any[];
-  showList: boolean = true;
+  // showList: boolean = true;
 
   constructor( private _programServ: ConnexionService, private _route: Router) { }
  
   ngOnInit() {
 
+    // On récupère les titres de chaques programmes
     this._programServ.getAllLists().subscribe((listsFromBackend: any[])=>{
       console.log(listsFromBackend);
       this.allList = listsFromBackend;
     })
-
-    if (this._route.url === '/programmes/programme_pdf') {
-      this.showList = false;
-    }
 
   }
 
@@ -31,30 +28,22 @@ export class ProgramsComponent implements OnInit {
   /** Cette méthode est situé sur le bouton du router "ouvrir" et elle permet de ne plus afficher la liste des programmes */
   onOpenProgram(i: number) {
 
-    this.showList = false;
     // On ajuste l'index à +2 car : +1 pour les index de tableau quiccommence à 0 a lors que la feuille de calcul commence à 1 et +1 car la première lignes de cette feuille de calcul commence par les titres.
     const idList = i+2;
     console.log(idList);
     const programID = JSON.stringify(idList)
+
     // On stocke l'id dans le localstorage pour le récupérer pour la page programme_pdf
     localStorage.setItem('iprogramID', programID)
-
+    // Puis on redirige vers la page du programmes à imprimer
+    this._route.navigate(['/programme_pdf'])
+    
   }
+  
 
-
-  /** Cette méthode permet de revenir à la page d'avant (home)*/
-  onGoBack() {
-
-    this._route.navigate(['/programmes'])
-    this.showList = true;
-
-  }
-
-
+  // Le logo permet de rediriger vers la page principale
   onRedirectHome() {
-
     this._route.navigate(['/home'])
-
   }
 
 }

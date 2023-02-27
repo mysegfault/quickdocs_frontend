@@ -16,6 +16,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { ProgPDFComponent } from './components/prog-pdf/prog-pdf.component';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -38,7 +39,8 @@ import { ProgPDFComponent } from './components/prog-pdf/prog-pdf.component';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule
   ],
   providers: [
     {

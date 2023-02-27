@@ -12,6 +12,7 @@ export class Programs {
     sous_titre_photo_recto?: string; 
     titre_footer?:string;
     footer?: string; 
+    footer_info_sasu?: string;
     intit_objectifs?: string; 
     cont_objectifs?: string; 
     intit_duree?: string; 

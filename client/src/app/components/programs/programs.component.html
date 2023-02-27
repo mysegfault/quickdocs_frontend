@@ -6,16 +6,11 @@
       <img src="../../../assets/logos/alpix-logo-transparent.png" alt="Logo Alpix">
     </div>
 
-    <!-- pour revenir en arrière -->
-    <div class="back" (click)="onGoBack()">
-      <mat-icon>keyboard_return</mat-icon>
-      <p>Liste des programmes</p>
-    </div>
-
   </div>
 
 
-  <div *ngIf="showList">
+  <div>
+    <!-- *ngIf="showList" -->
 
     <h3>Mes programmes de formation</h3>
 
@@ -27,8 +22,7 @@
             <mat-card-title>{{list}}</mat-card-title>
           </mat-card-header>
           <mat-card-actions>
-            <button mat-raised-button [routerLink]="['/programmes/programme_pdf']" routerLinkActive="active"
-              class="btn_access" (click)="onOpenProgram(i)">OUVRIR</button>
+            <button mat-raised-button class="btn_access" (click)="onOpenProgram(i)">OUVRIR</button>
           </mat-card-actions>
         </mat-card>
       </div>

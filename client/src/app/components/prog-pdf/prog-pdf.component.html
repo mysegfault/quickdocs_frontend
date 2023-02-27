@@ -1,15 +1,14 @@
 <section class="programme_pdf">
 
 
-    <div class="PDF_to_print">
+    <div class="PDF_to_print" #pdfContent>
 
         <!-- Première page -->
-        <div class="page_un">
+        <div id="page_un">
 
             <!-- entete recto -->
             <div class="entete_recto">
-                <img [src]="program.photo_entete_recto" alt="photo d'entête de la page recto"
-                    class="photo_entete_recto">
+                <img [src]="program.photo_entete_recto" alt="photo d'entête de la page recto">
 
                 <div class="rectangle_entete">
                     <p>PROGRAMME DE FORMATION</p>
@@ -25,14 +24,14 @@
                 <!-- centre recto gauche -->
                 <div class="left_recto">
                     <div class="left_hight_recto">
-                        <img [src]="program.logo" alt="photo studio" class="logo">
+                        <img [src]="program.logo" alt="photo studio">
                         <p>{{program.introduction}}</p>
                     </div>
                     <div class="left_bottom_recto">
                         <p class="chapeau">{{program.chapeau_introduction}}</p>
                         <p class="prix">{{program.prix_formation}}</p>
                         <p class="prix">+ {{program.frais_dossier}}</p>
-                        <img [src]="program.photo_cont_recto" alt="photo studio alpix" class="photo_recto">
+                        <img [src]="program.photo_cont_recto" alt="photo studio alpix">
                         <p class="titre_photo_recto">{{program.titre_photo_recto}}</p>
                         <p class="sous_titre_recto">{{program.sous_titre_photo_recto}}</p>
                     </div>
@@ -41,7 +40,8 @@
                 <!-- centre recto droit -->
                 <div class="right_recto">
                     <p class="sous_titre">{{program.intit_objectifs}}</p>
-                    <p class="cont_sous_titre">{{program.cont_objectifs}}</p>
+                    <textarea class="transparent_input_objectifs" rows="8" cols="26"
+                        [value]="program.cont_objectifs"></textarea>
                     <p class="sous_titre">{{program.intit_duree}}</p>
                     <p class="cont_sous_titre">{{program.cont_duree}}</p>
                     <p class="sous_titre">{{program.intit_dates}}</p>
@@ -55,21 +55,21 @@
 
             </div>
 
-            <!-- footer recto-->
-            <div class="bottom">
+            <!-- footer recto -->
+            <div class="bottom_recto">
                 <p class="titre_footer">{{program.titre_footer}}</p>
-                <p>{{program.footer}}</p>
+                <p class="info_footer">{{program.footer}}</p>
+                <p class="info_footer">{{program.footer_info_sasu}}</p>
                 <p class="pagination">1/2</p>
             </div>
         </div>
 
 
         <!-- Deuxième page -->
-        <div class="page_deux">
+        <div id="page_deux">
             <!-- entete verso -->
             <div class="entete_verso">
-                <img [src]="program.photo_entete_verso" alt="photo d'entête de la page verso"
-                    class="photo_entete_verso">
+                <img [src]="program.photo_entete_verso" alt="photo d'entête de la page verso">
             </div>
 
 
@@ -80,14 +80,16 @@
                     <p class="titre_verso">{{program.intitule_page_verso}}</p>
                     <p class="sous_titre_verso">{{program.chapeau_intitule_verso}}</p>
                     <p class="titre_prog">{{program.titre_programme_generique}}</p>
-                    <p class="cont_prog">{{program.contenu_programme_generique}}</p>
+                    <textarea class="transparent_input" rows="6" cols="32"
+                        [value]="program.contenu_programme_generique"></textarea>
                     <p class="titre_prog">{{program.titre_programme_autre}}</p>
-                    <p class="cont_prog">{{program.contenu_programme_autre}}</p>
-                    <img [src]="program.photo_cont_verso" alt="photographe" class="photo_verso">
+                    <textarea class="transparent_input" rows="5" cols="33"
+                        [value]="program.contenu_programme_autre"></textarea>
+                    <img [src]="program.photo_cont_verso" alt="photographe">
                     <p class="sous_titre_photo_verso">{{program.nom_formateur}}</p>
                     <p class="sous_titre_photo_verso">{{program.metier}}</p>
                     <p class="desc_formateur">{{program.information_formateur}}</p>
-                    
+
                 </div>
 
                 <!-- centre verso droit -->
@@ -99,16 +101,17 @@
                     <p class="sous_titre">{{program.intit_delai}}</p>
                     <p class="cont_sous_titre">{{program.cont_delai}}</p>
                     <p class="sous_titre">{{program.intit_qualite}}</p>
-                    <p class="cont_sous_titre">{{program.cont_qualite}}</p>                  
+                    <p class="cont_sous_titre">{{program.cont_qualite}}</p>
                 </div>
 
             </div>
 
 
             <!-- footer verso-->
-            <div class="bottom">
+            <div class="bottom_verso">
                 <p class="titre_footer">{{program.titre_footer}}</p>
-                <p>{{program.footer}}</p>
+                <p class="info_footer">{{program.footer}}</p>
+                <p class="info_footer">{{program.footer_info_sasu}}</p>
                 <p class="pagination">2/2</p>
             </div>
 
@@ -116,8 +119,13 @@
 
     </div>
 
-    <!-- bouton pour générer le PDF -->
-    <button mat-raised-button class="btn_pdf" (click)="onGeneratePdf()">Générer le pdf</button>
+    <div class="boutons">
+        <!-- bouton pour générer le PDF -->
+        <button mat-raised-button class="btn" (click)="onGeneratePdf()">Générer le pdf</button>
+
+        <!-- bouton pour revenir sur les listes -->
+        <button mat-raised-button class="btn" (click)="onBackToPrograms()">Retour sur les listes</button>
+    </div>
 
 
 </section>
