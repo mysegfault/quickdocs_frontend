@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnexionService } from 'src/app/services/connexion.service';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +13,7 @@ export class ProgramsComponent implements OnInit {
   allList!: any[];
   // showList: boolean = true;
 
-  constructor( private _programServ: ConnexionService, private _route: Router) { }
+  constructor( private _programServ: ConnexionService, private _route: Router, private _authService: SocialAuthService) { }
  
   ngOnInit() {
 
@@ -45,5 +46,15 @@ export class ProgramsComponent implements OnInit {
   onRedirectHome() {
     this._route.navigate(['/home'])
   }
+
+
+    /** Méthode pour se déconnecter */
+    onLogOut() {
+
+      this._authService.signOut();
+      localStorage.clear();
+      this._route.navigate(['/login']);
+  
+    }
 
 }
