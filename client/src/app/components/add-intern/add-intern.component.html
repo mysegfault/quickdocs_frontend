@@ -1,1 +1,101 @@
-<p>add-intern works!</p>
+<section class="ajouter_stagiaire">
+  <!--  -->
+
+  <h3>Ajouter un stagiaire</h3>
+
+
+  <mat-card>
+
+    <form [formGroup]="internForm" (ngSubmit)="onSubmit(interns)" class="formulaire">
+
+      <!-- Input code -->
+      <mat-form-field appearance="outline">
+        <mat-label>Code du stagiaire</mat-label>
+        <input matInput formControlName="intern_code" type="text" minlength="2" autocomplete>
+        <mat-hint>(Nom Prénom Nom de formation)</mat-hint>
+      </mat-form-field>
+
+      <!-- Input genre -->
+      <mat-form-field appearance="outline">
+        <mat-label>Genre</mat-label>
+        <input matInput formControlName="intern_genre" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input nom -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="intern_lastname" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input prénom -->
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="intern_firstname" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input adresse -->
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input matInput formControlName="intern_adress" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input code postal -->
+      <mat-form-field appearance="outline">
+        <mat-label>Code postal</mat-label>
+        <input matInput formControlName="intern_zipcode" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input ville -->
+      <mat-form-field appearance="outline">
+        <mat-label>Ville</mat-label>
+        <input matInput formControlName="intern_city" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input nom de formation -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nom de la formation suivie</mat-label>
+        <input matInput formControlName="intern_program" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input date de début -->
+      <mat-form-field appearance="outline">
+        <mat-label>Début de la formation</mat-label>
+        <input matInput formControlName="intern_firstdate" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input date de fin -->
+      <mat-form-field appearance="outline">
+        <mat-label>Fin de la formation</mat-label>
+        <input matInput formControlName="intern_lastdate" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input de la durée de formation -->
+      <mat-form-field appearance="outline">
+        <mat-label>Durée de formation</mat-label>
+        <input matInput formControlName="intern_duration" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input du taux de formation -->
+      <mat-form-field appearance="outline">
+        <mat-label>Taux de réalisation</mat-label>
+        <input matInput formControlName="intern_achievement" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+      <!-- Input financeur -->
+      <mat-form-field appearance="outline">
+        <mat-label>Financeur</mat-label>
+        <input matInput formControlName="intern_finance" type="text" minlength="2" autocomplete>
+      </mat-form-field>
+
+
+
+      <button mat-raised-button class="sendButton" type="submit" [disabled]="internForm.invalid">Valider</button>
+
+    </form>
+
+  </mat-card>
+
+
+
+
+</section>

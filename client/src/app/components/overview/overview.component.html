@@ -25,10 +25,11 @@
         <app-menu></app-menu>
     </mat-sidenav>
 
-    <!-- <div class="bienvenue" *ngIf="!router">
+    <!-- essage d'acceuil -->
+    <div class="bienvenue" *ngIf="isHomeRoute()">
         <h3>Bienvenue sur ton application</h3>
         <p>Clique sur le menu pour commencer à éditer des documents</p>
-    </div> -->
+    </div>
 
 
     <!-- Le contenu en router-outlet -->

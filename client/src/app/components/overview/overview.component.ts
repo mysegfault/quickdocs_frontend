@@ -25,6 +25,10 @@ export class OverviewComponent implements OnInit {
       this._route.navigate(['/home'])
     }
 
+    // Méthode qui permet d'afficher un message d'acceuil lorsqu'on est sur /home
+    isHomeRoute(): boolean {
+      return this._route.url === '/home';
+    }
 
 
 }

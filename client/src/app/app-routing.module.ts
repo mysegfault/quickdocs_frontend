@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddInternComponent } from './components/add-intern/add-intern.component';
+import { DocInternComponent } from './components/doc-intern/doc-intern.component';
 import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ProgPDFComponent } from './components/prog-pdf/prog-pdf.component';
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'programme_pdf', component: ProgPDFComponent, canActivate: [AuthGuard] },
   { path: 'home', component: OverviewComponent, canActivate: [AuthGuard],
     children:
-      [{ path: 'programmes', component: ProgramsComponent, canActivate: [AuthGuard] }]
+      [{ path: 'programmes', component: ProgramsComponent, canActivate: [AuthGuard] },
+      { path: 'ajouter_stagiaire', component: AddInternComponent, canActivate: [AuthGuard] },
+      { path: 'documents_stagiaire', component: DocInternComponent, canActivate: [AuthGuard] }]
   },
 ];
 

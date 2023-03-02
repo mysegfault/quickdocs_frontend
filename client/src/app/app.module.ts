@@ -21,6 +21,9 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AddInternComponent } from './components/add-intern/add-intern.component';
 import { DocInternComponent } from './components/doc-intern/doc-intern.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 
@@ -48,7 +51,10 @@ import { DocInternComponent } from './components/doc-intern/doc-intern.component
     MatIconModule,
     MatCardModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [
     {

@@ -1,0 +1,34 @@
+.document_stagiaires {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: 'Helvetica', sans-serif;
+        font-size: clamp(1.25rem, 0.9926rem + 1.1765vw, 1.875rem);
+        margin-bottom: 40px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    p {
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+    }
+
+    h3 {
+        margin-top : 50px;
+    }
+
+   
+
+}
