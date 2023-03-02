@@ -4,17 +4,9 @@
         <img src="../../../assets/logos/alpix-logo-transparent.png" alt="Logo Alpix">
     </div>
 
-    <div class="btn_google">
-        <asl-google-signin-button type='standard' size='large' shape="circle" *ngIf="!user"></asl-google-signin-button>
+    <div class="btn_google" *ngIf="!user" routerLink=".">
+        <asl-google-signin-button type='standard' size='large' shape="circle"></asl-google-signin-button> 
     </div>
 
 
 </section>
-
-
-
-
-<!-- <button type="button" class="login-with-google-btn">
-            Connecte toi avec Google
-        </button> -->
-<!--  (click)="onLogin()" -->

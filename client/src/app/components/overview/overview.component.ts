@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
 export class OverviewComponent implements OnInit {
 
   user_name!: any;
+  token!: any;
 
   constructor(private _route: Router, private _authService: SocialAuthService) { }
 
   ngOnInit() {
     
     this.user_name = localStorage.getItem('user_name');
-    const token = localStorage.getItem('token');
+    this.token = localStorage.getItem('token');
 
   }
 
@@ -24,6 +25,7 @@ export class OverviewComponent implements OnInit {
   /** Méthode pour se déconnecter */
   onLogOut() {
 
+    // A chaque sign out, on refresh le token.
     this._authService.signOut();
     localStorage.clear();
     this._route.navigate(['/login']);

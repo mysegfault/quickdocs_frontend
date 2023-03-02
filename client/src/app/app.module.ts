@@ -8,7 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProgramsComponent } from './components/programs/programs.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OverviewComponent } from './components/overview/overview.component';
-import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, GoogleSigninButtonDirective } from '@abacritt/angularx-social-login';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -40,7 +40,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     MatIconModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [
     {
