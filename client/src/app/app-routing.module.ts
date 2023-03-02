@@ -4,14 +4,17 @@ import { LoginComponent } from './components/login/login.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { ProgPDFComponent } from './components/prog-pdf/prog-pdf.component';
 import { ProgramsComponent } from './components/programs/programs.component';
+import { AuthGuard } from './guards/auth.guard';
 // import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: OverviewComponent },
-  { path: 'programmes', component: ProgramsComponent },
-  { path: 'programme_pdf', component: ProgPDFComponent }
+  { path: 'programme_pdf', component: ProgPDFComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: OverviewComponent, canActivate: [AuthGuard],
+    children:
+      [{ path: 'programmes', component: ProgramsComponent, canActivate: [AuthGuard] }]
+  },
 ];
 
 // canActivate: [AuthGuard]

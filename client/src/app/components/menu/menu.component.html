@@ -1,0 +1,38 @@
+<section class="menu">
+
+    <h2>Menu</h2>
+    <div class="nav">
+
+        <a routerLink="programmes" routerLinkActive="active">
+            <p>Editer un programme de formation</p>
+        </a>
+
+        <div class="rubrique">
+            <h3>STAGIAIRES</h3>
+
+            <a routerLink="programmes" routerLinkActive="active">
+                <p>Ajouter un stagiaire</p>
+            </a>
+            <a routerLink="programmes" routerLinkActive="active">
+                <p>Éditer un document</p>
+            </a>
+        </div>
+
+        <!-- <div class="rubrique">
+            <h3>ENTREPRISES</h3>
+            <a routerLink="programmes" routerLinkActive="active">
+                <p>Ajouter une entreprise</p>
+            </a>
+            <a routerLink="programmes" routerLinkActive="active">
+                <p>Éditer un document</p>
+            </a>
+        </div> -->
+
+
+        <!-- pour se déconnecter -->
+        <div class="escape" (click)="onLogOut()">
+            <mat-icon>exit_to_app</mat-icon>
+        </div>
+    </div>
+
+</section>

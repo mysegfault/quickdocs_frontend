@@ -30,7 +30,7 @@ export class ProgPDFComponent implements OnInit {
 
     /** Cette méthode permet de revenir à la page d'avant (home)*/
     onBackToPrograms() {
-      this._route.navigate(['/programmes'])
+      this._route.navigate(['/home/programmes'])
     }
 
 

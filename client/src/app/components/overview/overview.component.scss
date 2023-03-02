@@ -8,14 +8,17 @@
     background-color: black;
     color: white;
 
-    h1, h2, h3, h4 {
+    h1,
+    h2,
+    h3,
+    h4 {
         font-family: 'Helvetica', sans-serif;
         font-size: 25px;
         text-align: center;
         padding: 10px;
     }
 
-    p{
+    p {
         font-family: 'Arial', sans-serif;
     }
 
@@ -31,21 +34,22 @@
             justify-content: center;
             align-items: center;
             width: 15%;
-            
+
             img {
                 max-height: 40px;
                 padding-left: 15px;
                 filter: drop-shadow(0 0 0.85rem white);
-                
+
             }
         }
 
-        .menu {
+        .titre_appli {
             display: flex;
             flex-direction: column;
             justify-content: center;
             width: 80%;
             height: 100%;
+
             p {
                 color: white;
                 font-size: clamp(1.0625rem, 0.8958rem + 0.8889vw, 1.5625rem);
@@ -54,41 +58,52 @@
             }
         }
 
-        .escape {
+        .btn_menu {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             margin-right: 10px;
+            height: 100%;
+            color: white;
             cursor: pointer;
         }
 
     }
 
-    .bienvenue {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: calc(100% - 70px);
-        color: white;
-        padding: 1%;
-        padding-top: 80px;
+    .menu {
+        width: 250px;
+        height: 100%;
+        background-color: #feaa61;
+    }
 
-        button {
-            margin-top: 30px;
-            text-decoration: none;
-            width: 300px;
-            height: 40px;
-            border-radius: 10px;
-            font-size: clamp(0.75rem, 0.7083rem + 0.2222vw, 0.875rem);
-            text-decoration: none;
-            background-color: #FFAB61;
-            text-transform: uppercase;
-        }
+    // .bienvenue {
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    //     height: calc(100% - 70px);
+    //     color: white;
+    //     padding: 1%;
+    //     padding-top: 80px;
+    // }
+
+    .router {
+        width: 100vw;
+        height: calc(100% - 100px);
 
     }
-    
+
+
 }
 
-
-
+// button {
+//     margin-top: 30px;
+//     text-decoration: none;
+//     width: 300px;
+//     height: 40px;
+//     border-radius: 10px;
+//     font-size: clamp(0.75rem, 0.7083rem + 0.2222vw, 0.875rem);
+//     text-decoration: none;
+//     background-color: #FFAB61;
+//     text-transform: uppercase;
+// }

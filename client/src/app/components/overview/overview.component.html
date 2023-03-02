@@ -1,36 +1,42 @@
-<section class="overview">
+<mat-sidenav-container class="overview" autosize>
 
-    
+
 
     <div class="header">
 
-        <div class="logo">
+        <div class="logo" (click)="onRedirectHome()">
             <img src="../../../assets/logos/alpix-logo-transparent.png" alt="Logo Alpix">
         </div>
 
-        <div class="menu">
+        <div class="titre_appli">
             <p>Quickdocs</p>
         </div>
 
-        <!-- pour se déconnecter -->
-        <div class="escape" (click)="onLogOut()">
-            <mat-icon>exit_to_app</mat-icon>
-        </div>
-        
+        <!-- Le bouton toggle pour afficher/masquer le menu-->
+        <button type="button" mat-button (click)="left.toggle()" class="btn_menu">
+            <mat-icon matSuffix class="icon-menu">menu</mat-icon>
+        </button>
+
+    </div>
+
+
+    <!-- Menu à ouvrir et fermer -->
+    <mat-sidenav #left class="menu" mode="over" position="start">
+        <app-menu></app-menu>
+    </mat-sidenav>
+
+    <!-- <div class="bienvenue" *ngIf="!router">
+        <h3>Bienvenue sur ton application</h3>
+        <p>Clique sur le menu pour commencer à éditer des documents</p>
+    </div> -->
+
+
+    <!-- Le contenu en router-outlet -->
+    <div class="router">
+        <router-outlet></router-outlet>
     </div>
 
 
 
 
-    <div class="bienvenue">
-
-        <h3>Bienvenue sur ton application {{user_name}}</h3>
-
-        <button mat-raised-button (click)="onClickBtn()">Accéder aux programmes</button>
-
-    </div>
-
-    
-
-
-</section>
+</mat-sidenav-container>

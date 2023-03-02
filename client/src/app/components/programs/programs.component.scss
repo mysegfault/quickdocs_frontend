@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: black;
@@ -25,45 +25,49 @@
         text-align: center;
     }
 
-    .header {
-        height: 70px;
-        width: 100vw;
-        display: flex;
-        justify-content: space-between;
+    // .header {
+    //     height: 70px;
+    //     width: 100vw;
+    //     display: flex;
+    //     justify-content: space-between;
 
-        .logo {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 10%;
-            padding: 10px;
+    //     .logo {
+    //         display: flex;
+    //         flex-direction: column;
+    //         justify-content: center;
+    //         align-items: center;
+    //         width: 10%;
+    //         padding: 10px;
 
-            img {
-                max-height: 50px;
-                padding-left: 15px;
-                cursor: pointer;
-            }
-        }
+    //         img {
+    //             max-height: 50px;
+    //             padding-left: 15px;
+    //             cursor: pointer;
+    //         }
+    //     }
 
-        @media only screen and (max-width: 800px) {
-            .logo {
-                width: 20%;
-            }
-        }
+    //     @media only screen and (max-width: 800px) {
+    //         .logo {
+    //             width: 20%;
+    //         }
+    //     }
 
-        .escape {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-right: 40px;
-            cursor: pointer;
-            mat-icon{
-                color: #FFAB61;
-            }
-        }
+    //     .escape {
+    //         display: flex;
+    //         flex-direction: column;
+    //         align-items: center;
+    //         justify-content: center;
+    //         margin-right: 40px;
+    //         cursor: pointer;
+    //         mat-icon{
+    //             color: #FFAB61;
+    //         }
+    //     }
 
+    // }
+
+    h3 {
+        margin-top : 50px;
     }
 
     .list_programs {

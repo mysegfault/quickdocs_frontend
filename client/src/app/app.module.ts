@@ -17,6 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { ProgPDFComponent } from './components/prog-pdf/prog-pdf.component';
 import { MatInputModule } from '@angular/material/input';
+import { MenuComponent } from './components/menu/menu.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { AddInternComponent } from './components/add-intern/add-intern.component';
+import { DocInternComponent } from './components/doc-intern/doc-intern.component';
 
 
 
@@ -26,7 +30,10 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent,
     ProgramsComponent,
     OverviewComponent,
-    ProgPDFComponent
+    ProgPDFComponent,
+    MenuComponent,
+    AddInternComponent,
+    DocInternComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatCardModule,
     MatInputModule,
+    MatSidenavModule
   ],
   providers: [
     {
