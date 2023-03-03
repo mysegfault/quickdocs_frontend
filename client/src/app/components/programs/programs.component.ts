@@ -35,7 +35,7 @@ export class ProgramsComponent implements OnInit {
     const programID = JSON.stringify(idList)
 
     // On stocke l'id dans le localstorage pour le récupérer pour la page programme_pdf
-    localStorage.setItem('iprogramID', programID)
+    localStorage.setItem('programID', programID)
     // Puis on redirige vers la page du programmes à imprimer
     this._route.navigate(['/programme_pdf'])
     

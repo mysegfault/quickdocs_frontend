@@ -1,15 +1,42 @@
 <section class="document_stagiaires">
 
+  <h3>Générer un document pour le stagiaire</h3>
 
-    <div>
-  
-      <h3>Générer un document pour le stagiaire</h3>
+  <mat-card>
 
-      
-  
+    <form [formGroup]="verifForm" class="formulaire" (ngSubmit)="onSubmit()">
 
-  
-    </div>
-  
-  
-  </section>
+
+      <div class="input">
+        <!-- Input code -->
+        <mat-form-field appearance="outline">
+          <mat-label>Code du stagiaire</mat-label>
+          <input matInput formControlName="intern_code" type="text" minlength="2" autocomplete>
+          <mat-hint>(Nom Prénom Nom de formation)</mat-hint>
+        </mat-form-field>
+
+        <!-- Input nom formation suivie -->
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Formation suivie</mat-label>
+          <input matInput formControlName="titre_programme" type="text" minlength="2" autocomplete>
+        </mat-form-field> -->
+
+      </div>
+
+
+      <button mat-raised-button class="sendButton" type="submit" [disabled]="verifForm.invalid">Valider</button>
+
+    </form>
+
+  </mat-card>
+
+  <div class="edit_doc" *ngIf="showMore">
+    <span><mat-icon>play_arrow</mat-icon><p> Éditer une attestation d’assisuité</p></span>
+    <span><mat-icon>play_arrow</mat-icon><p>Éditer un certificat de réalisation</p></span>
+    <span><mat-icon>play_arrow</mat-icon><p>Éditer une convention de formation professionnelle</p></span>
+    <span><mat-icon>play_arrow</mat-icon><p>Éditer une feuille d’émargement</p></span>
+  </div>
+
+
+
+</section>

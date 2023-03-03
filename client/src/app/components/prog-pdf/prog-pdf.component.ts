@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ProgPDFComponent implements OnInit {
 
-  idList = localStorage.getItem('iprogramID')
+  idList = localStorage.getItem('programID')
   program!: Programs;
 
 
