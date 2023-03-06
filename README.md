@@ -35,9 +35,11 @@ No application existed for this task and no technologies were imposed on me.
 11. Deployment of the application on private Server then Electron.
 12. Writing documentation.
 
-## Deployment
+## Library used
 
-## Contributors
+Docxtemplater : To dynamically fill in administrative documents. 
+Docs : https://docxtemplater.com/docs/
+Package : npm install docxtemplater
 
 ## Other information
 
