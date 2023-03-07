@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Interns } from '../models/interns.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,7 @@ export class InternsService {
    * @param  {Interns} internValues
    * @returns Observable
    */
-  postIntern(internValues: Interns): Observable<Interns> {
+  postIntern(internValues: Interns): Observable<any> {
     return this._http.post(`${this.backend}/intern`, internValues)
   }
 
@@ -27,7 +28,7 @@ export class InternsService {
    * @param  {Interns} codeIntern
    * @returns Observable
    */
-  postFindIntern(codeIntern : Interns):  Observable<Interns> {
+  postFindIntern(codeIntern : Interns):  Observable<any> {
     return this._http.post(`${this.backend}/interns`, codeIntern)
   }
 
@@ -36,8 +37,16 @@ export class InternsService {
    * @param  {Interns} id
    * @returns Observable
    */
-  getOnIntern(id: any): Observable<Interns> {
+  getOneIntern(id: any): Observable<any> {
     return this._http.get(`${this.backend}/intern/` + id)
+  }
+
+
+  /** Cette fonction permet d'afficher tous les codes de stagaire afin de faciliter la recherche des stagiaires (dans l'input) quand on veut éditer un document administratif
+   * * @returns Observable
+   */
+  getAllCodeIntern(): Observable<any> {
+    return this._http.get(`${this.backend}/internscodes`)
   }
 
 

@@ -3,27 +3,28 @@
     <h2>Menu</h2>
     <div class="nav">
 
-        <a routerLink="programmes" routerLinkActive="active">
+        <!--  (click)="closeMenu.emit()" permet de fermer le menu quand on clique sur les onglets concernés -->
+        <a routerLink="programmes" routerLinkActive="active" (click)="closeMenu.emit()">
             <p>Editer un programme de formation</p>
         </a>
 
         <div class="rubrique">
             <h3>STAGIAIRES</h3>
 
-            <a routerLink="ajouter_stagiaire" routerLinkActive="active">
+            <a routerLink="ajouter_stagiaire" routerLinkActive="active" (click)="closeMenu.emit()">
                 <p>Ajouter un stagiaire</p>
             </a>
-            <a routerLink="documents_stagiaire" routerLinkActive="active">
+            <a routerLink="documents_stagiaire" routerLinkActive="active" (click)="closeMenu.emit()">
                 <p>Éditer un document</p>
             </a>
         </div>
 
         <!-- <div class="rubrique">
             <h3>ENTREPRISES</h3>
-            <a routerLink="" routerLinkActive="active">
+            <a routerLink="" routerLinkActive="active" (click)="closeMenu.emit()">
                 <p>Ajouter une entreprise</p>
             </a>
-            <a routerLink="" routerLinkActive="active">
+            <a routerLink="" routerLinkActive="active" (click)="closeMenu.emit()">
                 <p>Éditer un document</p>
             </a>
         </div> -->

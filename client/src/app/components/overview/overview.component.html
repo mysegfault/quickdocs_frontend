@@ -22,7 +22,8 @@
 
     <!-- Menu à ouvrir et fermer -->
     <mat-sidenav #left class="menu" mode="over" position="start">
-        <app-menu></app-menu>
+        <app-menu (closeMenu)="left.toggle()"></app-menu>
+        <!-- closeMenu permet de fermer l'onglet quand on fera appel à (click)="closeMenu.emit()" sur les onglets dans MenuComponent -->
     </mat-sidenav>
 
     <!-- essage d'acceuil -->

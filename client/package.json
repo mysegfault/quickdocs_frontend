@@ -22,13 +22,12 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
-    "jspdf-autotable": "^3.5.28",
+    "@types/file-saver": "^2.0.5",
+    "docxtemplater": "^3.34.3",
+    "file-saver": "^2.0.5",
     "ngx-auth": "^5.4.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.12.0"
+    "pizzip": "^3.1.4",
+    "rxjs": "~7.8.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.6",

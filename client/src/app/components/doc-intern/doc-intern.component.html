@@ -8,18 +8,17 @@
 
 
       <div class="input">
-        <!-- Input code -->
+        <!-- Input code du stagiaire -->
         <mat-form-field appearance="outline">
           <mat-label>Code du stagiaire</mat-label>
-          <input matInput formControlName="intern_code" type="text" minlength="2" autocomplete>
+          <input matInput formControlName="intern_code" [matAutocomplete]="auto" type="text" minlength="2" autocomplete>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let code of filteredCode | async" [value]="code">
+              {{code}}
+            </mat-option>
+          </mat-autocomplete>
           <mat-hint>(Nom Prénom Nom de formation)</mat-hint>
         </mat-form-field>
-
-        <!-- Input nom formation suivie -->
-        <!-- <mat-form-field appearance="outline">
-          <mat-label>Formation suivie</mat-label>
-          <input matInput formControlName="titre_programme" type="text" minlength="2" autocomplete>
-        </mat-form-field> -->
 
       </div>
 
@@ -31,10 +30,18 @@
   </mat-card>
 
   <div class="edit_doc" *ngIf="showMore">
-    <span><mat-icon>play_arrow</mat-icon><p> Éditer une attestation d’assisuité</p></span>
-    <span><mat-icon>play_arrow</mat-icon><p>Éditer un certificat de réalisation</p></span>
-    <span><mat-icon>play_arrow</mat-icon><p>Éditer une convention de formation professionnelle</p></span>
-    <span><mat-icon>play_arrow</mat-icon><p>Éditer une feuille d’émargement</p></span>
+    <span><mat-icon>play_arrow</mat-icon>
+      <p (click)="generateAttestationAssiduite()"> Éditer une attestation d’assisuité</p>
+    </span>
+    <span><mat-icon>play_arrow</mat-icon>
+      <p>Éditer un certificat de réalisation</p>
+    </span>
+    <span><mat-icon>play_arrow</mat-icon>
+      <p>Éditer une convention de formation professionnelle</p>
+    </span>
+    <span><mat-icon>play_arrow</mat-icon>
+      <p>Éditer une feuille d’émargement individuelle</p>
+    </span>
   </div>
 
 

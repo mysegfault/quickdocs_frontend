@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
+  // Permet de fermer le menu une fois qu'on a cliqué sur l'ongler qui nous intéressait.
+  @Output() closeMenu = new EventEmitter<void>();
 
   constructor(private _route: Router, private _authService: SocialAuthService) { }
 

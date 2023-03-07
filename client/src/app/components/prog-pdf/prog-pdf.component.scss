@@ -13,6 +13,32 @@
         font-size: 12px;
     }
 
+    .back {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 80%;
+        height: 40px;
+        padding: 10px;
+
+        mat-icon {
+            color: white;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+
+        p {
+            color: white;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    }
+    @media print {
+        .back {
+            display: none;
+        }
+    }
+
     // zone du print/PDF
     .PDF_to_print {
         display: flex;

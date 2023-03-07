@@ -1,6 +1,5 @@
 export class Programs {
 
-    readonly program_id?: number;
     titre_programme?: string; 
     chapeau_titre?: string; 
     version_programme?: string;

@@ -6,6 +6,7 @@ import { ConnexionService } from 'src/app/services/connexion.service';
 import { InternsService } from 'src/app/services/interns.service';
 import { map, Observable, startWith } from 'rxjs';
 
+
 @Component({
   selector: 'app-add-intern',
   templateUrl: './add-intern.component.html',
@@ -24,11 +25,23 @@ export class AddInternComponent implements OnInit {
   intern_zipcode!: Interns;
   intern_city!: Interns;
   intern_program!: Interns;
+  program_duration?: Interns;
+  module_format?: Interns;
   intern_firstdate!: Interns;
   intern_lastdate!: Interns;
   intern_duration!: Interns;
   intern_achievement!: Interns;
   intern_finance!: Interns;
+  number_convention?: Interns;
+  module_number?: Interns;
+  program_format?: Interns;
+  number_intern?: Interns;
+  training_cost?: Interns;
+  learning_cost?: Interns;
+  total_cost?: Interns;
+  deposit?: Interns;
+  convention_date?: Interns;
+  first_training_date?: Interns;
   allTitlesPrograms!: any[];
   titles!: string[];
   filteredTitles!: Observable<string[]>;
@@ -40,21 +53,34 @@ export class AddInternComponent implements OnInit {
     // on initialise avec le model Interns pour ensuite faire appel à object assign.
     this.internForm = this._fb.group({
       intern_code: [this.interns.intern_code, Validators.required],
-      intern_genre: [this.interns.intern_genre, Validators.required],
+      intern_genre: this.interns.intern_genre,
       intern_lastname: [this.interns.intern_lastname, Validators.required],
       intern_firstname: [this.interns.intern_firstname, Validators.required],
-      intern_adress: [this.interns.intern_adress, Validators.required],
-      intern_zipcode: [this.interns.intern_zipcode, Validators.required],
-      intern_city: [this.interns.intern_city, Validators.required],
+      intern_adress: this.interns.intern_adress,
+      intern_zipcode: this.interns.intern_zipcode,
+      intern_city: this.interns.intern_city,
       intern_program: [this.interns.intern_program, Validators.required],
-      intern_firstdate: [this.interns.intern_firstdate, Validators.required],
-      intern_lastdate: [this.interns.intern_lastdate, Validators.required],
-      intern_duration: [this.interns.intern_duration, Validators.required],
-      intern_achievement: [this.interns.intern_achievement, Validators.required],
-      intern_finance: [this.interns.intern_finance, Validators.required]
+      program_duration: this.interns.program_duration,
+      module_format:this.interns.module_format,
+      intern_firstdate: this.interns.intern_firstdate,
+      intern_lastdate: this.interns.intern_lastdate,
+      intern_duration: this.interns.intern_duration,
+      intern_achievement: this.interns.intern_achievement,
+      intern_finance: this.interns.intern_finance,
+
+      number_convention: this.interns.number_convention, 
+      module_number: this.interns.module_number,
+      program_format: this.interns.program_format, 
+      number_intern: this.interns.number_intern,
+      training_cost: this.interns.training_cost, 
+      learning_cost: this.interns.learning_cost, 
+      total_cost: this.interns.total_cost, 
+      deposit: this.interns.deposit, 
+      convention_date: this.interns.convention_date, 
+      first_training_date: this.interns.first_training_date, 
     })
 
-    // On récupère les titres de chaques programmes car on en a besoin p our le champs du nom de la formation suivie.
+    // On récupère les titres de chaques programmes car on en a besoin pour le champs du nom de la formation suivie.
     this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
       console.log('tableau des titres :', listsFromBackend);
       this.allTitlesPrograms = listsFromBackend;
@@ -100,7 +126,6 @@ export class AddInternComponent implements OnInit {
  * @param  {string} value
  * @returns string
  */
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 

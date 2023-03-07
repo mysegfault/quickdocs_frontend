@@ -51,15 +51,28 @@
           <input matInput formControlName="intern_city" type="text" minlength="2" autocomplete>
         </mat-form-field>
 
-        <!-- Input nom de formation -->
+        <!-- Input nom de formation / matAutoComplete -->
         <mat-form-field appearance="outline">
           <mat-label>Nom de la formation suivie</mat-label>
-          <input matInput formControlName="intern_program" [matAutocomplete]="auto" type="text" minlength="2" autocomplete>
+          <input matInput formControlName="intern_program" [matAutocomplete]="auto" type="text" minlength="2"
+            autocomplete>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let title of filteredTitles | async" [value]="title">
               {{title}}
             </mat-option>
           </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- Input durée de la formation -->
+        <mat-form-field appearance="outline">
+          <mat-label>Durée de la formation</mat-label>
+          <input matInput formControlName="program_duration" type="text" minlength="2" autocomplete>
+        </mat-form-field>
+
+        <!-- Input format des journée de formation -->
+        <mat-form-field appearance="outline">
+          <mat-label>Format de la formation (journée)</mat-label>
+          <input matInput formControlName="module_format" type="text" minlength="2" autocomplete>
         </mat-form-field>
 
         <!-- Input date de début -->
@@ -74,9 +87,9 @@
           <input matInput formControlName="intern_lastdate" type="text" minlength="2" autocomplete>
         </mat-form-field>
 
-        <!-- Input de la durée de formation -->
+        <!-- Input de la durée suivie par le satgiaire -->
         <mat-form-field appearance="outline">
-          <mat-label>Durée de formation</mat-label>
+          <mat-label>Durée suivie</mat-label>
           <input matInput formControlName="intern_duration" type="text" minlength="2" autocomplete>
         </mat-form-field>
 
