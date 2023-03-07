@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse
 } from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
@@ -49,6 +49,9 @@ export class AuthInterceptor implements HttpInterceptor {
               break;
             case 403:
               message = "Forbidden";
+              break;
+            case 500:
+              message = "Internal Server Error";
               break;
           }
 
