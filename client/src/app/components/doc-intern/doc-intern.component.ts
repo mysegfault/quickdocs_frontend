@@ -123,7 +123,7 @@ export class DocInternComponent implements OnInit {
 
   /** Cette méthode permet de générer l'attestation d'assiduité (format .docx) au clique sur le lien en HTML
    */
-  generateAttestationAssiduite() {
+  onGenerateAttestationAssiduite() {
 
       // On charge le modèle de document Word stocké sur ce chemin
       const file = `${window.location.origin}/assets/documents/attestation_assiduite.docx`;
@@ -190,5 +190,174 @@ export class DocInternComponent implements OnInit {
       xhr.send();
     
   }
+
+
+
+
+  /** Cette méthode permet de générer le certificat de réalisation (format .docx) au clique sur le lien en HTML
+   */
+  onGenerateCertificat() {
+
+    const file = `${window.location.origin}/assets/documents/certificat_de_realisation.docx`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', file, true);
+    xhr.responseType = 'arraybuffer';
+
+    const dataIntern = {
+      genre: this.allDataIntern.intern_genre !== null ? this.allDataIntern.intern_genre : "",
+      lastname: this.allDataIntern.intern_lastname !== null ? this.allDataIntern.intern_lastname : "",
+      firstname: this.allDataIntern.intern_firstname !== null ? this.allDataIntern.intern_firstname : "",
+      program_title: this.allDataIntern.intern_program !== null ? this.allDataIntern.intern_program : "",
+      firstdate: this.allDataIntern.intern_firstdate !== null ? this.allDataIntern.intern_firstdate : "",
+      lastdate: this.allDataIntern.intern_lastdate !== null ? this.allDataIntern.intern_lastdate : "",
+      program_duration: this.allDataIntern.program_duration !== null ? this.allDataIntern.program_duration : "",
+      intern_duration: this.allDataIntern.intern_duration !== null ? this.allDataIntern.intern_duration : "",
+      taux_realisation: this.allDataIntern.intern_achievement !== null ? this.allDataIntern.intern_achievement : ""
+    }
+    console.log(dataIntern);
+
+    xhr.onload = () => {
+      console.log('Le modèle de document Word a été chargé avec succès.');
+
+      const data = new Uint8Array(xhr.response);
+      const zip = new PizZip(data);
+      const doc = new Docxtemplater();
+      doc.loadZip(zip);
+      doc.setData(dataIntern);
+
+      try {
+        doc.render();
+        console.log('Le document a été généré avec succès.');
+        const output = doc.getZip().generate({type: 'blob'});
+        console.log(output);
+        const filename = `Certificat_realisation_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
+        console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+        saveAs(output, filename);
+
+      } catch (error) {
+        console.log(JSON.stringify({error}));
+        throw error;
+      }
+    };
+
+    xhr.send();
+  
+}
+
+
+/** Cette méthode permet de générer la convention de formation professionnelle (format .docx) au clique sur le lien en HTML
+   */
+onGenerateConevention() {
+
+  const file = `${window.location.origin}/assets/documents/convention_formation_particulier.docx`;
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', file, true);
+  xhr.responseType = 'arraybuffer';
+
+  const dataIntern = {
+    program_title: this.allDataIntern.intern_program !== null ? this.allDataIntern.intern_program : "",
+    number_convention: this.allDataIntern.number_convention !== null ? this.allDataIntern.number_convention : "",
+    genre: this.allDataIntern.intern_genre !== null ? this.allDataIntern.intern_genre : "",
+    lastname: this.allDataIntern.intern_lastname !== null ? this.allDataIntern.intern_lastname : "",
+    firstname: this.allDataIntern.intern_firstname !== null ? this.allDataIntern.intern_firstname : "",
+    adress: this.allDataIntern.intern_adress !== null ? this.allDataIntern.intern_adress : "",
+    zipcode: this.allDataIntern.intern_zipcode !== null ? this.allDataIntern.intern_zipcode : "",
+    city: this.allDataIntern.intern_city !== null ? this.allDataIntern.intern_city : "",
+    firstdate: this.allDataIntern.intern_firstdate !== null ? this.allDataIntern.intern_firstdate : "",
+    lastdate: this.allDataIntern.intern_lastdate !== null ? this.allDataIntern.intern_lastdate : "",
+    program_duration: this.allDataIntern.program_duration !== null ? this.allDataIntern.program_duration : "",
+    nb_modules: this.allDataIntern.module_number !== null ? this.allDataIntern.module_number : "",
+    module_format: this.allDataIntern.module_format !== null ? this.allDataIntern.module_format : "",
+    program_format: this.allDataIntern.program_format !== null ? this.allDataIntern.program_format : "",
+    nb_intern: this.allDataIntern.number_intern !== null ? this.allDataIntern.number_intern : "",
+    training_cost: this.allDataIntern.training_cost !== null ? this.allDataIntern.training_cost : "",
+    learning_cost: this.allDataIntern.learning_cost !== null ? this.allDataIntern.learning_cost : "",
+    total_cost: this.allDataIntern.total_cost !== null ? this.allDataIntern.total_cost : "",
+    accompt: this.allDataIntern.deposit !== null ? this.allDataIntern.deposit : "",
+    convention_date: this.allDataIntern.convention_date !== null ? this.allDataIntern.convention_date : "",
+  }
+  console.log(dataIntern);
+
+  xhr.onload = () => {
+    console.log('Le modèle de document Word a été chargé avec succès.');
+
+    const data = new Uint8Array(xhr.response);
+    const zip = new PizZip(data);
+    const doc = new Docxtemplater();
+    doc.loadZip(zip);
+    doc.setData(dataIntern);
+
+    try {
+      doc.render();
+      console.log('Le document a été généré avec succès.');
+      const output = doc.getZip().generate({type: 'blob'});
+      console.log(output);
+      const filename = `Convention_formation_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
+      console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+      saveAs(output, filename);
+
+    } catch (error) {
+      console.log(JSON.stringify({error}));
+      throw error;
+    }
+  };
+
+  xhr.send();
+
+}
+
+
+/** Cette méthode permet de générer une feuille d'émargement individuelle (format .docx) au clique sur le lien en HTML
+   */
+onGenerateEmargement() {
+
+  const file = `${window.location.origin}/assets/documents/feuille_emargement_individuelle.docx`;
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', file, true);
+  xhr.responseType = 'arraybuffer';
+
+  const dataIntern = {
+    lastname: this.allDataIntern.intern_lastname !== null ? this.allDataIntern.intern_lastname : "",
+    firstname: this.allDataIntern.intern_firstname !== null ? this.allDataIntern.intern_firstname : "",
+    program_title: this.allDataIntern.intern_program !== null ? this.allDataIntern.intern_program : "",
+    firstdate: this.allDataIntern.intern_firstdate !== null ? this.allDataIntern.intern_firstdate : "",
+    lastdate: this.allDataIntern.intern_lastdate !== null ? this.allDataIntern.intern_lastdate : "",
+    program_duration: this.allDataIntern.program_duration !== null ? this.allDataIntern.program_duration : "",
+    funder: this.allDataIntern.intern_finance !== null ? this.allDataIntern.intern_finance : "",
+    first_training_date: this.allDataIntern.first_training_date !== null ? this.allDataIntern.first_training_date : "",
+  }
+  console.log(dataIntern);
+
+  xhr.onload = () => {
+    console.log('Le modèle de document Word a été chargé avec succès.');
+
+    const data = new Uint8Array(xhr.response);
+    const zip = new PizZip(data);
+    const doc = new Docxtemplater();
+    doc.loadZip(zip);
+    doc.setData(dataIntern);
+
+    try {
+      doc.render();
+      console.log('Le document a été généré avec succès.');
+      const output = doc.getZip().generate({type: 'blob'});
+      console.log(output);
+      const filename = `Feuille_emargement_individuelle_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
+      console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+      saveAs(output, filename);
+
+    } catch (error) {
+      console.log(JSON.stringify({error}));
+      throw error;
+    }
+  };
+
+  xhr.send();
+
+}
+
     
 }

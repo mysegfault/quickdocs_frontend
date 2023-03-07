@@ -67,10 +67,9 @@ export class AddInternComponent implements OnInit {
       intern_duration: this.interns.intern_duration,
       intern_achievement: this.interns.intern_achievement,
       intern_finance: this.interns.intern_finance,
-
       number_convention: this.interns.number_convention, 
       module_number: this.interns.module_number,
-      program_format: this.interns.program_format, 
+      program_format: this.interns.program_format,
       number_intern: this.interns.number_intern,
       training_cost: this.interns.training_cost, 
       learning_cost: this.interns.learning_cost, 

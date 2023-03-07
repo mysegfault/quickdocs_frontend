@@ -30,16 +30,16 @@
   </mat-card>
 
   <div class="edit_doc" *ngIf="showMore">
-    <span><mat-icon>play_arrow</mat-icon>
-      <p (click)="generateAttestationAssiduite()"> Éditer une attestation d’assisuité</p>
+    <span (click)="onGenerateAttestationAssiduite()"><mat-icon>play_arrow</mat-icon>
+      <p> Éditer une attestation d’assisuité</p>
     </span>
-    <span><mat-icon>play_arrow</mat-icon>
+    <span (click)="onGenerateCertificat()"><mat-icon>play_arrow</mat-icon>
       <p>Éditer un certificat de réalisation</p>
     </span>
-    <span><mat-icon>play_arrow</mat-icon>
+    <span (click)="onGenerateConevention()"><mat-icon>play_arrow</mat-icon>
       <p>Éditer une convention de formation professionnelle</p>
     </span>
-    <span><mat-icon>play_arrow</mat-icon>
+    <span (click)="onGenerateEmargement()"><mat-icon>play_arrow</mat-icon>
       <p>Éditer une feuille d’émargement individuelle</p>
     </span>
   </div>
