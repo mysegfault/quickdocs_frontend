@@ -9,6 +9,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmAddInternModalComponent } from 'src/app/modals/confirm-add-intern-modal/confirm-add-intern-modal.component';
 import { Router } from '@angular/router';
 
+const moment = require('moment');
+
+
 @Component({
   selector: 'app-add-intern',
   templateUrl: './add-intern.component.html',
