@@ -1,7 +1,7 @@
 {
   "name": "quickdocs_frontend",
   "version": "1.0.0",
-  "description": "quickdocs application - automation to fill pdf",
+  "description": "quickdocs application - automation to fill documents",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
