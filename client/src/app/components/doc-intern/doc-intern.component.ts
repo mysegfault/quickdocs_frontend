@@ -12,7 +12,6 @@ import PizZip from 'pizzip'; // PizZip est une bibliothèque JavaScript qui perm
 import saveAs from 'file-saver'; // File-saver est une librairie js qui permet d'enregistrer des fichiers côté client.
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-doc-intern',
   templateUrl: './doc-intern.component.html',
