@@ -26,11 +26,26 @@
         <!-- closeMenu permet de fermer l'onglet quand on fera appel à (click)="closeMenu.emit()" sur les onglets dans MenuComponent -->
     </mat-sidenav>
 
-    <!-- essage d'acceuil -->
+    <!-- Message d'acceuil -->
     <div class="bienvenue" *ngIf="isHomeRoute()">
         <h3>Bienvenue sur ton application</h3>
         <p>Clique sur le menu pour commencer à éditer des documents</p>
+
+        <h4> OU </h4>
+
+        <div class="navigate">
+            <span (click)="onGoToPdf()"><mat-icon>keyboard_arrow_right</mat-icon>
+                <p> Aller sur la page des programmes </p>
+            </span>
+            <span (click)="onGoAddIntern()"><mat-icon>keyboard_arrow_right</mat-icon>
+                <p> Ajouter un(e) stagiaire </p>
+            </span>
+            <span (click)="onGoEditDoc()"> <mat-icon>keyboard_arrow_right</mat-icon>
+                <p> Éditer des documents administratifs </p>
+            </span>
+        </div>
     </div>
+
 
 
     <!-- Le contenu en router-outlet -->

@@ -22,8 +22,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AddInternComponent } from './components/add-intern/add-intern.component';
 import { DocInternComponent } from './components/doc-intern/doc-intern.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ConfirmAddInternModalComponent } from './modals/confirm-add-intern-modal/confirm-add-intern-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 
@@ -36,13 +42,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ProgPDFComponent,
     MenuComponent,
     AddInternComponent,
-    DocInternComponent
+    DocInternComponent,
+    ConfirmAddInternModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
+    FormsModule,
     HttpClientModule,
     SocialLoginModule,
     MatButtonModule,
@@ -54,7 +62,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSidenavModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {
@@ -76,7 +88,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }
   ],
   bootstrap: [AppComponent]
 })

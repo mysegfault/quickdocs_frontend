@@ -1,10 +1,8 @@
 .programme_pdf {
     width: 100vw;
-    max-height: 240vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
     color: black;
 
     p {
@@ -51,8 +49,8 @@
         #page_un,
         #page_deux {
             background-color: white;
-            width: 720px;
-            height: 1045px;
+            width: 721px;
+            height: 1049px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -420,6 +418,11 @@
         }
 
     }
+    @media screen and (max-width: 800px) {
+        .PDF_to_print {
+            zoom: 0.3;
+        }
+    }
 
 
 
@@ -430,7 +433,8 @@
         justify-content: space-around;
         align-items: center;
         width: 50%;
-        height: 100px;
+        height: 120px;
+        padding: 10px;
 
         .btn {
             width: 200px;
@@ -445,6 +449,12 @@
             text-transform: uppercase;
         }
 
+    }
+    @media screen and (max-width: 800px) {
+        .boutons {
+            display: flex;
+            flex-direction: column;
+        }
     }
 
     @media print {

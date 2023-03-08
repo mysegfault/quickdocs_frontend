@@ -1,7 +1,18 @@
 <section class="ajouter_stagiaire">
 
-  <h3>Ajouter un stagiaire</h3>
+  <div class="navigation">
+    <div class="nav">
+      <mat-icon>arrow_back</mat-icon>
+      <p (click)="onBackToHome()"> Page d'accueil</p>
+    </div>
 
+    <div class="nav">
+      <p (click)="onGoToEdit()"> Editer les documents</p>
+      <mat-icon>arrow_forward</mat-icon>
+    </div>
+  </div>
+
+  <h3>Ajouter un stagiaire</h3>
 
   <mat-card>
 
@@ -78,13 +89,18 @@
         <!-- Input date de début -->
         <mat-form-field appearance="outline">
           <mat-label>Début de la formation</mat-label>
-          <input matInput formControlName="intern_firstdate" type="text" minlength="2" autocomplete>
+          <input matInput formControlName="intern_firstdate" [matDatepicker]="pickerOne" (dateChange)="changeFormatdate()">
+          <mat-datepicker-toggle matSuffix [for]="pickerOne"></mat-datepicker-toggle>
+          <mat-datepicker #pickerOne></mat-datepicker>
         </mat-form-field>
+
 
         <!-- Input date de fin -->
         <mat-form-field appearance="outline">
           <mat-label>Fin de la formation</mat-label>
-          <input matInput formControlName="intern_lastdate" type="text" minlength="2" autocomplete>
+          <input matInput formControlName="intern_lastdate" [matDatepicker]="pickerTwo" (dateChange)="changeFormatdate()">
+          <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTwo></mat-datepicker>
         </mat-form-field>
 
         <!-- Input de la durée suivie par le satgiaire -->
@@ -119,8 +135,11 @@
 
         <!-- Input format de la formation -->
         <mat-form-field appearance="outline">
-          <mat-label>Format (individuelle/collectif)</mat-label>
-          <input matInput formControlName="program_format" type="text" minlength="2" autocomplete>
+          <mat-label>Format</mat-label>
+          <mat-select formControlName="program_format">
+            <mat-option value="individuelle">individuelle</mat-option>
+            <mat-option value="collective">collective</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <!-- Input nombre de stagiaires -->
@@ -156,13 +175,17 @@
         <!-- Input date de la convention -->
         <mat-form-field appearance="outline">
           <mat-label>Date de la convention</mat-label>
-          <input matInput formControlName="convention_date" type="text" minlength="2" autocomplete>
+          <input matInput formControlName="convention_date" [matDatepicker]="pickerThree" (dateChange)="changeFormatdate()">
+          <mat-datepicker-toggle matSuffix [for]="pickerThree"></mat-datepicker-toggle>
+          <mat-datepicker #pickerThree></mat-datepicker>
         </mat-form-field>
 
         <!-- Input premier jour de formation -->
         <mat-form-field appearance="outline">
-          <mat-label>Date du premier jour de la formation</mat-label>
-          <input matInput formControlName="first_training_date" type="text" minlength="2" autocomplete>
+          <mat-label>Premier jour de la formation</mat-label>
+          <input matInput formControlName="first_training_date" [matDatepicker]="picker4" (dateChange)="changeFormatdate()">
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
         </mat-form-field>
 
       </div>

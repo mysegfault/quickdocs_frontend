@@ -18,6 +18,11 @@
         padding: 10px;
     }
 
+    h4 {
+        color:#feaa61;
+        margin-top: 30px;
+    }
+
     p {
         font-family: 'Arial', sans-serif;
     }
@@ -86,6 +91,25 @@
         color: white;
         padding-top: 60px;
         text-align: center;
+
+        .navigate {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 10px 10px;
+            font-weight: 500;
+            span {
+                display: flex;
+                font-weight: 500;
+                cursor: pointer;
+                mat-icon {
+                    margin-right: 5px;
+                }
+                p{
+                    margin-top: 2px;
+                }
+            }
+        }
     }
 
     .router {

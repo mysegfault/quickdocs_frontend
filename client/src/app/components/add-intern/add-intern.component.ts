@@ -5,7 +5,11 @@ import { Interns } from 'src/app/models/interns.model';
 import { ConnexionService } from 'src/app/services/connexion.service';
 import { InternsService } from 'src/app/services/interns.service';
 import { map, Observable, startWith } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmAddInternModalComponent } from 'src/app/modals/confirm-add-intern-modal/confirm-add-intern-modal.component';
+import { Router } from '@angular/router';
 
+const moment = require('moment');
 
 @Component({
   selector: 'app-add-intern',
@@ -45,8 +49,9 @@ export class AddInternComponent implements OnInit {
   allTitlesPrograms!: any[];
   titles!: string[];
   filteredTitles!: Observable<string[]>;
+  
 
-  constructor(private _fb: FormBuilder, private _insternServ: InternsService, private _snackBar: MatSnackBar, private _programServ: ConnexionService) { }
+  constructor(private _fb: FormBuilder, private _insternServ: InternsService, private _snackBar: MatSnackBar, private _programServ: ConnexionService, private _matDialog: MatDialog, private _route: Router) { }
 
   ngOnInit(): void {
     // Les attributs, à l'intérieur, servent à lier au html avec formControlName
@@ -61,22 +66,22 @@ export class AddInternComponent implements OnInit {
       intern_city: this.interns.intern_city,
       intern_program: [this.interns.intern_program, Validators.required],
       program_duration: this.interns.program_duration,
-      module_format:this.interns.module_format,
+      module_format: this.interns.module_format,
       intern_firstdate: this.interns.intern_firstdate,
       intern_lastdate: this.interns.intern_lastdate,
       intern_duration: this.interns.intern_duration,
       intern_achievement: this.interns.intern_achievement,
       intern_finance: this.interns.intern_finance,
-      number_convention: this.interns.number_convention, 
+      number_convention: this.interns.number_convention,
       module_number: this.interns.module_number,
       program_format: this.interns.program_format,
       number_intern: this.interns.number_intern,
-      training_cost: this.interns.training_cost, 
-      learning_cost: this.interns.learning_cost, 
-      total_cost: this.interns.total_cost, 
-      deposit: this.interns.deposit, 
-      convention_date: this.interns.convention_date, 
-      first_training_date: this.interns.first_training_date, 
+      training_cost: this.interns.training_cost,
+      learning_cost: this.interns.learning_cost,
+      total_cost: this.interns.total_cost,
+      deposit: this.interns.deposit,
+      convention_date: this.interns.convention_date,
+      first_training_date: this.interns.first_training_date,
     })
 
     // On récupère les titres de chaques programmes car on en a besoin pour le champs du nom de la formation suivie.
@@ -84,7 +89,7 @@ export class AddInternComponent implements OnInit {
       console.log('tableau des titres :', listsFromBackend);
       this.allTitlesPrograms = listsFromBackend;
       this.titles = this.allTitlesPrograms.map(arr => arr[0])
-        // @ts-ignore
+      // @ts-ignore
       this.filteredTitles = this.internForm?.get("intern_program")?.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '')),
@@ -113,18 +118,27 @@ export class AddInternComponent implements OnInit {
     this._insternServ.postIntern(this.interns).subscribe((dataIntern: any) => {
       console.log('envoyé au backend: ' + dataIntern)
       if (dataIntern) {
-        this._snackBar.open('Le stagiaire a été ajouté à la base de donnée avec succès', 'ok', { verticalPosition: 'top' })
+        // const snackBarRef = this._snackBar.open('Le stagiaire a été ajouté à la base de donnée avec succès', 'ok', { verticalPosition: 'top' })
+        // setTimeout(() => {
+        //   snackBarRef.dismiss();
+        //   location.reload();
+        // }, 4000);
+        this._matDialog.open(ConfirmAddInternModalComponent, {
+          enterAnimationDuration: '200ms',
+          exitAnimationDuration: '100ms',
+          maxWidth: '300px'
+        })
+
       }
     })
 
   }
 
 
-
-/** Cette méthode permet de filtrer les entrées du tableau pour les proposer titre par titre (mat-autocomplete)
- * @param  {string} value
- * @returns string
- */
+  /** Cette méthode permet de filtrer les entrées du tableau pour les proposer titre par titre (mat-autocomplete)
+   * @param  {string} value
+   * @returns string
+   */
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
@@ -134,5 +148,30 @@ export class AddInternComponent implements OnInit {
 
     return this.titles.filter(title => title.toLowerCase().includes(filterValue));
   }
+
+
+  
+  /** Cette méthode permet de revenir sur la page d'accueil */
+  onBackToHome() {
+    this._route.navigate(['/home'])
+  }
+
+
+  /** Cette méthode permet d'aller sur la page pour éditer les documents des stagiaires */
+  onGoToEdit(){
+    this._route.navigate(['/home/documents_stagiaire'])
+  }
+
+
+  /** Cette méthode permet de renvoyer les date en format JJ/MM/AAAA en base de données.
+   * @returns any
+   */
+  changeFormatdate(): any {
+    this.internForm.value.intern_firstdate = moment(this.internForm.value.intern_firstdate).format('DD-MM-YYYY');
+    this.internForm.value.intern_lastdate = moment(this.internForm.value.intern_lastdate).format('DD-MM-YYYY');
+    this.internForm.value.convention_date = moment(this.internForm.value.convention_date).format('DD-MM-YYYY');
+    this.internForm.value.first_training_date = moment(this.internForm.value.first_training_date).format('DD-MM-YYYY');
+  }
+
 
 }

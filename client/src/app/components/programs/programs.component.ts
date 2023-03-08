@@ -57,4 +57,9 @@ export class ProgramsComponent implements OnInit {
   
     }
 
+
+    /** Cette méthode permet de revenir sur la page d'accueil */
+    onBackToHome() {
+      this._route.navigate(['/home'])
+    }
 }
