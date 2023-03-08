@@ -8,8 +8,9 @@ import { map, Observable, startWith } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmAddInternModalComponent } from 'src/app/modals/confirm-add-intern-modal/confirm-add-intern-modal.component';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
-const moment = require('moment');
+// const moment = require('moment');
 
 
 @Component({
