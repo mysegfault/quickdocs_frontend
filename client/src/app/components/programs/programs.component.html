@@ -17,12 +17,26 @@
             <mat-card-title>{{list}}</mat-card-title>
           </mat-card-header>
           <mat-card-actions>
-            <button mat-raised-button class="btn_access" (click)="onOpenProgram(i)">OUVRIR</button>
+            <button mat-raised-button class="btn_access" (click)="onGenerateProgram(i)">GÉNÉRER</button>
           </mat-card-actions>
         </mat-card>
       </div>
 
     </div>
+
+
+      <!-- <div class="one_card" *ngFor="let list of allList; let i = index">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{list}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-raised-button class="btn_access" (click)="onOpenProgram(i)">OUVRIR</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div> -->
 
   </div>
 
