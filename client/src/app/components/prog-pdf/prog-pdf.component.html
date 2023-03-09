@@ -33,7 +33,7 @@
                     </div>
                     <div class="left_bottom_recto">
                         <p class="chapeau">{{program.chapeau_introduction}}</p>
-                        <p class="prix">{{program.prix_formation}}</p>
+                        <p class="prix prix1">{{program.prix_formation}}</p>
                         <p class="prix">+ {{program.frais_dossier}}</p>
                         <img [src]="program.photo_cont_recto" alt="photo studio alpix">
                         <p class="titre_photo_recto">{{program.titre_photo_recto}}</p>
@@ -44,7 +44,7 @@
                 <!-- centre recto droit -->
                 <div class="right_recto">
                     <p class="sous_titre">{{program.intit_objectifs}}</p>
-                    <textarea class="transparent_input_objectifs" rows="8" cols="26"
+                    <textarea class="transparent_input_objectifs" rows="10" cols="26"
                         [value]="program.cont_objectifs"></textarea>
                     <p class="sous_titre">{{program.intit_duree}}</p>
                     <p class="cont_sous_titre">{{program.cont_duree}}</p>
@@ -99,7 +99,8 @@
                 <!-- centre verso droit -->
                 <div class="right_verso">
                     <p class="sous_titre">{{program.intit_moyens_peda}}</p>
-                    <p class="cont_sous_titre">{{program.cont_moyens_peda}}</p>
+                    <textarea class="transparent_input_objectifs" rows="12" cols="26"
+                        [value]="program.cont_moyens_peda"></textarea>
                     <p class="sous_titre">{{program.intit_accessibilite}}</p>
                     <p class="cont_sous_titre">{{program.cont_accessibilite}}</p>
                     <p class="sous_titre">{{program.intit_delai}}</p>

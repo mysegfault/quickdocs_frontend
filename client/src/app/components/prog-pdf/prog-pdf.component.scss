@@ -94,26 +94,25 @@
                         font-size: 20px;
                         margin-top: 20px;
                         font-size: 18px;
-                        font-weight: 500;
+                        font-weight: 900;
                         margin-top: 5px;
-                        margin-left: 6px;
                     }
 
                     p {
-                        color: black;
+                        color: white;
                         margin-bottom: 0;
                         font-size: 15px
                     }
 
                     .chapeau_titre,
                     .version {
-                        color: black;
+                        color: white;
                         margin-top: 20px;
                         font-size: 12px;
                     }
 
                     .chapeau_titre {
-                        margin-top: 40px;
+                        margin-top: 60px;
                     }
 
                     .version {
@@ -175,9 +174,13 @@
                             font-size: 13px;
                         }
 
+                        .prix1{
+                            margin-top: 15px;
+                        }
+
                         img {
                             margin-top: 5px;
-                            width: 300px;
+                            width: 330px;
                             align-self: center;
                         }
 
@@ -185,14 +188,14 @@
                         .sous_titre_recto {
                             color: #fe7f13;
                             margin: 0;
-                            width: 200px;
+                            width: 220px;
                             align-self: center;
-                            font-size: 10px;
+                            font-size: 12px;
                         }
 
                         .titre_photo_recto {
                             font-weight: 700;
-                            font-size: 12px;
+                            font-size: 13px;
                             margin-top: 5px;
                         }
 
@@ -253,13 +256,13 @@
 
                 .titre_footer {
                     font-weight: 800;
-                    font-size: 12px;
+                    font-size: 14px;
                     line-height: 10px;
                     margin: 20px 10px 10px;
                 }
 
                 .info_footer {
-                    font-size: 10px;
+                    font-size: 12px;
                     margin: 0 10px;
                 }
 
@@ -379,8 +382,15 @@
                         font-size: 12px;
                     }
 
-                    .cont_sous_titre {
+                    .transparent_input_objectifs {
+                        border: none;
+                        font-family: 'Helvetica', sans-serif;
                         line-height: 1.5em;
+                        margin: 0.5em;
+                        font-size: 12px;
+                        resize: none;
+                        background-color: #353535;
+                        color: white;
                     }
                 }
 
@@ -398,13 +408,13 @@
 
                 .titre_footer {
                     font-weight: 800;
-                    font-size: 12px;
+                    font-size: 14px;
                     line-height: 10px;
                     margin: 20px 10px 10px;
                 }
 
                 .info_footer {
-                    font-size: 10px;
+                    font-size: 12px;
                     margin: 0 10px;
                 }
 

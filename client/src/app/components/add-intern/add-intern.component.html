@@ -29,7 +29,10 @@
         <!-- Input genre -->
         <mat-form-field appearance="outline">
           <mat-label>Genre</mat-label>
-          <input matInput formControlName="intern_genre" type="text">
+          <mat-select formControlName="intern_genre">
+            <mat-option value="Monsieur">Monsieur</mat-option>
+            <mat-option value="Madame">Madame</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <!-- Input nom -->
@@ -144,7 +147,16 @@
         <!-- Input nombre de stagiaires -->
         <mat-form-field appearance="outline">
           <mat-label>Nombre d'apprenants</mat-label>
-          <input matInput formControlName="number_intern" type="text">
+          <mat-select formControlName="number_intern">
+            <mat-option value="1 personne">1 personne</mat-option>
+            <mat-option value="2 personnes">2 personnes</mat-option>
+            <mat-option value="3 personnes">3 personnes</mat-option>
+            <mat-option value="4 personnes">4 personnes</mat-option>
+            <mat-option value="5 personnes">5 personnes</mat-option>
+            <mat-option value="6 personnes">6 personnes</mat-option>
+            <mat-option value="7 personnes">7 personnes</mat-option>
+            <mat-option value="8 personnes">8 personnes</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <!-- Input frais de formation -->
