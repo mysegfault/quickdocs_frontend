@@ -10,7 +10,6 @@ import { ConfirmAddInternModalComponent } from 'src/app/modals/confirm-add-inter
 import { Router } from '@angular/router';
 import moment from 'moment';
 
-// const moment = require('moment');
 
 
 @Component({
@@ -165,7 +164,7 @@ export class AddInternComponent implements OnInit {
   }
 
 
-  /** Cette méthode permet de renvoyer les date en format JJ/MM/AAAA en base de données.
+  /** Cette méthode permet de renvoyer les dates en format JJ/MM/AAAA en base de données.
    * @returns any
    */
   changeFormatdate(): any {

@@ -23,7 +23,7 @@
         <!-- Input code du stagiaire -->
         <mat-form-field appearance="outline">
           <mat-label>Code du stagiaire</mat-label>
-          <input matInput formControlName="intern_code" [matAutocomplete]="auto" type="text" minlength="2" autocomplete>
+          <input matInput formControlName="intern_code" [matAutocomplete]="auto" type="text" autocomplete>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let code of filteredCode | async" [value]="code">
               {{code}}
