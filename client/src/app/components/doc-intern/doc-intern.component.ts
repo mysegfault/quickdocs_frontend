@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Interns } from 'src/app/models/interns.model';
 import { HttpClient } from '@angular/common/http';
-import { ConnexionService } from 'src/app/services/connexion.service';
+import { ConnexionService } from 'src/app/services/programs.service';
 import { InternsService } from 'src/app/services/interns.service';
 import { map, Observable, startWith } from 'rxjs';
 // Librairies relative à la génération des documents.
@@ -36,65 +36,69 @@ export class DocInternComponent implements OnInit {
   constructor(private _fb: FormBuilder, private _insternServ: InternsService, private _programServ: ConnexionService, private _route: Router) { }
 
   ngOnInit(): void {
-    // Les attributs, à l'intérieur, servent à lier au html avec formControlName
-    // on initialise avec le model User pour ensuite faire appel à object assign.
+
+    // le formulaire. Lier au html avec formControlName
     this.verifForm = this._fb.group({
       intern_code: [this.interns.intern_code, Validators.required],
     })
 
-    // On récupère les titres de chaques programmes car on en aura besoin pour comparer au submit.
-    this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
-      console.log(listsFromBackend);
-      this.allTitlesPrograms = listsFromBackend;
-    })
 
-    // On récupère les codes de destagiaires pour l'input du code des stagiaires
+    // Pour le mat-autocomplete : On récupère les codes de stagiaires pour les proposer dans le champs "code du stagiaires".
     this._insternServ.getAllCodeIntern().subscribe((codeFromBackend: any) => {
       console.log('liste des codes:', codeFromBackend);
       this.allCodesIntern = codeFromBackend;
-      this.codes = this.allCodesIntern.map(arr => arr[0])
+      console.log(this.allCodesIntern);
+      // Pour avoir chaque code, on map
+      this.codes = this.allCodesIntern.map(tab => tab[0])
+      // Le commentaire ci-dessous sert à indiquer au compilateur TypeScript d'ignorer l'erreur de vérification de type pour cette ligne de code.
       // @ts-ignore
-      this.filteredCode = this.verifForm?.get("intern_code")?.valueChanges.pipe(
+      this.filteredCode = this.verifForm.get("intern_code").valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '')),
+        // Permet de remplacer le champs vide (ou commencant à être remplis) par la valeur choisie grâce à la méthode pipe().
       );
     })
 
 
+    // On récupère les titres de chaques programmes pour comparer quand l'utilisateur aura validé le champs.
+    // this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
+    //   console.log(listsFromBackend);
+    //   this.allTitlesPrograms = listsFromBackend;
+    // })
 
   }
 
-  /** Cette méthode permet de récupérer les infos de l'utilisateurs puis les infos de la formation, grâce à l'input pour transférer les infos utiles au template à éditer.
-   */
+  /** Cette méthode permet de récupérer les infos de l'utilisateurs puis les infos de la formation, grâce au champ "Intitulé de la formation" pour transférer les infos utiles au template à éditer. */
   onSubmit() {
 
-    // on fait apparaitre les documents à éditer
+    // on fait apparaitre les documents à éditer qui n'était pas visible avant la validation du champs.
     this.showMore = true;
 
     // On récupère les valeurs du formulaire dans un tableau d'objets
     const form = this.verifForm.value;
     console.log('ici, form : ', form);
 
-    // On récupère les infos à travers le backend :
+    // On envoie le code du stagiaire (récupéré dans le champ) au backend pour recevoir son id :
     this._insternServ.postFindIntern(form).subscribe((resIdIntern: any) => {
       console.log('data recu du backend: ' + resIdIntern)
       this.idIntern = resIdIntern;
       console.log('idIntern :', this.idIntern);
-      localStorage.setItem('internID', resIdIntern)
+      // localStorage.setItem('internID', resIdIntern)
 
-      // puis on récupère le nom de la formation pour le comparer au titre des programmes existant et ainsi réucpérer l'id du programmes qu'on stockera dans le localstorage pour afficher les données dans le template
+      // // Puis on récupère le nom de la formation pour le comparer au titre des programmes existant et ainsi réucpérer l'id du programmes qu'on stockera dans le localstorage pour afficher les données dans le template
+      //  Puis, grâce à l'id du stagiaire, on récupère toutes ses informations pour le document à éditer.
       this._insternServ.getOneIntern(this.idIntern).subscribe((allDataFromIntern: any) => {
         console.log('allDataIntern : ', allDataFromIntern);
         this.allDataIntern = allDataFromIntern;
         console.log("Toutes les données d'un stagiaire : ", this.allDataIntern);
-        this.formationSuivie = allDataFromIntern.intern_program;
-        console.log("formation suivie : ", this.formationSuivie);
+        // this.formationSuivie = allDataFromIntern.intern_program;
+        // console.log("formation suivie : ", this.formationSuivie);
 
         // on compare : 
-        const indexProgram = this.allTitlesPrograms.findIndex((arr: any) => arr[0] === this.formationSuivie);
-        console.log(indexProgram);
-        // on stocke :
-        localStorage.setItem('programIDwithStagiaire', indexProgram)
+        // const indexProgram = this.allTitlesPrograms.findIndex((arr: any) => arr[0] === this.formationSuivie);
+        // console.log(indexProgram);
+        // // on stocke :
+        // localStorage.setItem('programIDwithStagiaire', indexProgram)
       })
 
     })
@@ -102,18 +106,32 @@ export class DocInternComponent implements OnInit {
 
 
 
+  /** Cette méthode permet de revenir sur la page d'accueil */
+  onBackToHome() {
+    this._route.navigate(['/home'])
+  }
 
-  /** Cette méthode permet de filtrer les entrées du tableau pour les proposer code par code (mat-autocomplete)
+  /** Cette méthode permet d'aller sur la page pour ajouter des stagiaires */
+  onGoToEdit() {
+    this._route.navigate(['/home/ajouter_stagiaire'])
+  }
+
+
+
+  /** Cette méthode est lié au mat-autocomplete. Elle agit comme un filtre. D'abord, elle propose toutes les valeurs puis, en fonction de ce qui est tapé par l'utilisateur, les données proposées vont diminuer.
 * @param  {string} value
 * @returns string
 */
   private _filter(value: string): string[] {
+    // pour que le style de texte n'est pas d'impact lorsqu'on tape la donnée.
     const filterValue = value.toLowerCase();
 
+    // On met une condition pour que la fonction marche même s'il manque la donnée à transmettre.
     if (!this.codes) {
-      return []; // Retourne un tableau vide si this.titles est undefined
+      return []; // Retourne un tableau vide si this.codes est undefined
     }
 
+    // Voila ce que fait la fonction. Filtre en fonction de ce que l'utilisateur tape.
     return this.codes.filter(code => code.toLowerCase().includes(filterValue));
   }
 
@@ -358,16 +376,6 @@ export class DocInternComponent implements OnInit {
     xhr.send();
   }
 
-
-  /** Cette méthode permet de revenir sur la page d'accueil */
-  onBackToHome() {
-    this._route.navigate(['/home'])
-  }
-
-  /** Cette méthode permet d'aller sur la page pour ajouter des stagiaires */
-  onGoToEdit() {
-    this._route.navigate(['/home/ajouter_stagiaire'])
-  }
 
 
 }

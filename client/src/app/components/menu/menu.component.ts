@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  // Permet de fermer le menu une fois qu'on a cliqué sur l'ongler qui nous intéressait.
+  // Permet de fermer le menu une fois qu'on a cliqué sur l'onglet qui nous intéressait.
   @Output() closeMenu = new EventEmitter<void>();
 
   constructor(private _route: Router, private _authService: SocialAuthService) { }

@@ -15,7 +15,7 @@ export class InternsService {
   constructor(private _http: HttpClient) { }
 
 
-  /** Fonction our ajouter les stagiaires dans la BDD
+  /** Cette méthode permet d'ajouter les stagiaires dans la BDD
    * @param  {Interns} internValues
    * @returns Observable
    */
@@ -24,7 +24,7 @@ export class InternsService {
   }
 
 
-  /** Fonction our obtenir l'id du stagaire en fonction du code du stagiaire
+  /** Cette méthode permet d'obtenir l'id du stagaire en fonction du code du stagiaire pour pouvoir éditer des documents administratifs avec ses données.
    * @param  {Interns} codeIntern
    * @returns Observable
    */
@@ -33,7 +33,7 @@ export class InternsService {
   }
 
   
-  /** Fonction pour obtenir toutes les infos d'un stagiaire en fonction de son id.
+  /** Cette méthode permet d'obtenir toutes les infos d'un stagiaire en fonction de son id pour pouvoir éditer les documents avec ses informations.
    * @param  {Interns} id
    * @returns Observable
    */
@@ -42,7 +42,7 @@ export class InternsService {
   }
 
 
-  /** Cette fonction permet d'afficher tous les codes de stagaire afin de faciliter la recherche des stagiaires (dans l'input) quand on veut éditer un document administratif
+  /** Cette fonction permet d'afficher tous les codes de stagaire afin de faciliter la recherche des stagiaires (dans le champs de recherches) quand on veut éditer un document administratif.
    * * @returns Observable
    */
   getAllCodeIntern(): Observable<any> {

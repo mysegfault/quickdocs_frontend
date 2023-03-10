@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit() {
 
-    /** On fait appel au service SocialAuthService de google livré avec le package @abacritt/angularx-social-login qui permet de se connecter avec un bouton google spécifique.
+    /** On fait appel au service SocialAuthService de Google livré avec le package @abacritt/angularx-social-login qui permet de se connecter avec un bouton google spécifique.
      * Puis on fait appel à la méthode authState qui sert donc à authentifier l'utilisateur google, à récupérer les informations la concernant et à générer un token.
      * @param  {any} userGoogle (infos de l'utilisateur google)
      */
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
                 }
               }
         } else {
-          // Si l'utilisateur n'est pas autorisé, renvoyez une snack bar lui expliquant qu'il n'a pas accès
+          // Si l'utilisateur n'est pas autorisé, renvoyez une snackbar lui expliquant qu'il n'a pas accès
           console.log('Accès refusé');
 
           this._snackBar.open("Désolée ! Vous n'êtes pas autorisé à accéder à cette application",'ok',{verticalPosition: 'top'});

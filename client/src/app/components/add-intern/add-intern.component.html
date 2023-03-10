@@ -23,7 +23,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Code du stagiaire</mat-label>
           <input matInput formControlName="intern_code" type="text">
-          <mat-hint>(Nom Prénom Nom de formation)</mat-hint>
+          <mat-hint>(Nom Prénom Formation)</mat-hint>
         </mat-form-field>
 
         <!-- Input genre -->
@@ -67,7 +67,7 @@
 
         <!-- Input nom de formation / matAutoComplete -->
         <mat-form-field appearance="outline">
-          <mat-label>Nom de la formation suivie</mat-label>
+          <mat-label>Intitulé de la formation suivie</mat-label>
           <input matInput formControlName="intern_program" [matAutocomplete]="auto" type="text">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let title of filteredTitles | async" [value]="title">

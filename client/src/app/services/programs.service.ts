@@ -14,10 +14,19 @@ export class ConnexionService {
 
   constructor(private _http: HttpClient) { }
 
+
+  /** Cette méthode permet de récupérer tous les titres des programmes.
+   * @returns Observable
+   */
   getAllLists(): Observable<any> {
     return this._http.get(`${this.backend}/programmes`)
   }
 
+  
+  /** cette méthode permet de récupérer toutes les données d'un programme, par la transmission de son id.
+   * @param  {any} id
+   * @returns Observable
+   */
   getOneList(id:any): Observable<Programs> {
     return this._http.get(`${this.backend}/programme/` + id)
   }

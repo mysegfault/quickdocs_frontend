@@ -23,13 +23,13 @@
         <!-- Input code du stagiaire -->
         <mat-form-field appearance="outline">
           <mat-label>Code du stagiaire</mat-label>
-          <input matInput formControlName="intern_code" [matAutocomplete]="auto" type="text" autocomplete>
+          <input matInput formControlName="intern_code" [matAutocomplete]="auto" type="text">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let code of filteredCode | async" [value]="code">
               {{code}}
             </mat-option>
           </mat-autocomplete>
-          <mat-hint>(Nom Prénom Nom de formation)</mat-hint>
+          <mat-hint>(Nom Prénom Formation)</mat-hint>
         </mat-form-field>
 
       </div>
@@ -41,6 +41,7 @@
 
   </mat-card>
 
+  <!-- Partie qui ne s'affichera qu'après validation de l'input -->
   <div class="edit_doc" *ngIf="showMore">
     <span (click)="onGenerateAttestationAssiduite()"><mat-icon>play_arrow</mat-icon>
       <p> Éditer une attestation d’assisuité</p>

@@ -18,7 +18,7 @@ export class Interns {
     number_convention?: string;
     module_number?: number;
     program_format?: string;
-    number_intern?: number;
+    number_intern?: string;
     training_cost?: string;
     learning_cost?: string;
     total_cost?: string;

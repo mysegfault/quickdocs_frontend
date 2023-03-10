@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ConnexionService } from './connexion.service';
+import { ConnexionService } from './programs.service';
 
 describe('ConnexionService', () => {
   let service: ConnexionService;

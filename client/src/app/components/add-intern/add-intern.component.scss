@@ -29,7 +29,6 @@
 
     .navigation {
         display: flex;
-        // flex-direction: row;
         justify-content: space-between;
         width: 80%;
         height: 40px;
@@ -76,7 +75,7 @@
                     margin: 0 10px;
     
                     mat-hint {
-                        font-size: 10px;
+                        font-size: 9px;
                     }
                 }
                 @media screen and (max-width: 550px) {

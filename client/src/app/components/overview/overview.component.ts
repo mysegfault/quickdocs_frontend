@@ -8,16 +8,12 @@ import { Router } from '@angular/router';
 })
 export class OverviewComponent implements OnInit {
 
-  // user_name!: any;
   token!: any;
 
   constructor(private _route: Router) { }
 
   ngOnInit() {
-
-    // this.user_name = localStorage.getItem('user_name');
     this.token = localStorage.getItem('token');
-
   }
 
   // Le logo permet de rediriger vers la page principale
@@ -25,7 +21,7 @@ export class OverviewComponent implements OnInit {
     this._route.navigate(['/home'])
   }
 
-  // Méthode qui permet d'afficher un message d'acceuil lorsqu'on est sur /home
+  // Méthode qui permet d'afficher un message d'acceuil lorsqu'on est sur /home uniquement
   isHomeRoute(): boolean {
     return this._route.url === '/home';
   }

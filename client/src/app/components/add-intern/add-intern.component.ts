@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Interns } from 'src/app/models/interns.model';
-import { ConnexionService } from 'src/app/services/connexion.service';
+import { ConnexionService } from 'src/app/services/programs.service';
 import { InternsService } from 'src/app/services/interns.service';
 import { map, Observable, startWith } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmAddInternModalComponent } from 'src/app/modals/confirm-add-intern-modal/confirm-add-intern-modal.component';
 import { Router } from '@angular/router';
 import moment from 'moment';
-
 
 
 @Component({
@@ -50,11 +49,12 @@ export class AddInternComponent implements OnInit {
   allTitlesPrograms!: any[];
   titles!: string[];
   filteredTitles!: Observable<string[]>;
-  
+
 
   constructor(private _fb: FormBuilder, private _insternServ: InternsService, private _snackBar: MatSnackBar, private _programServ: ConnexionService, private _matDialog: MatDialog, private _route: Router) { }
 
   ngOnInit(): void {
+
     // Les attributs, à l'intérieur, servent à lier au html avec formControlName
     // on initialise avec le model Interns pour ensuite faire appel à object assign.
     this.internForm = this._fb.group({
@@ -63,7 +63,7 @@ export class AddInternComponent implements OnInit {
       intern_lastname: [this.interns.intern_lastname, Validators.required],
       intern_firstname: [this.interns.intern_firstname, Validators.required],
       intern_adress: this.interns.intern_adress,
-      intern_zipcode: this.interns.intern_zipcode,
+      intern_zipcode: [this.interns.intern_zipcode, [Validators.pattern('^[0-9]+$')]],
       intern_city: this.interns.intern_city,
       intern_program: [this.interns.intern_program, Validators.required],
       program_duration: this.interns.program_duration,
@@ -85,19 +85,25 @@ export class AddInternComponent implements OnInit {
       first_training_date: this.interns.first_training_date,
     })
 
-    // On récupère les titres de chaques programmes car on en a besoin pour le champs du nom de la formation suivie.
+    // On récupère les titres de chaque programmes pour les proposer dans le champs "intitulé de la formation suivie" (lié au mat-autocomplete)
     this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
       console.log('tableau des titres :', listsFromBackend);
       this.allTitlesPrograms = listsFromBackend;
-      this.titles = this.allTitlesPrograms.map(arr => arr[0])
+      // console.log(this.allTitlesPrograms);
+      // Pour avoir chaques titres
+      this.titles = this.allTitlesPrograms.map(tab => tab[0])
+      // Le commentaire ci-dessous sert à indiquer au compilateur TypeScript d'ignorer l'erreur de vérification de type pour cette ligne de code.
       // @ts-ignore
-      this.filteredTitles = this.internForm?.get("intern_program")?.valueChanges.pipe(
+      this.filteredTitles = this.internForm.get("intern_program").valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value || '')),
+        // Permet de remplacer le champs vide (ou commencant à être remplis) par la valeur choisie grâce à la méthode pipe().
       );
     })
 
   }
+
+
   /** Cette méthode permet de récupérer la valeur de tous les champs pour l'ajouter en BDD.
    * @param  {Interns} updateIntern : données du formulaire
    */
@@ -107,51 +113,38 @@ export class AddInternComponent implements OnInit {
     const formInt = this.internForm.value;
     console.log('ici, formInt : ', formInt);
 
-
-    // Pour lier au backend:
-    // Etape 1 : on récupère les données du formulaire pour les mettre dans un objet
+    // Puis on les met dans un objet pour les envoyer au backend
     this.interns = Object.assign(this.interns, formInt)
-    // this.interns = Object.values(formInt)
     console.warn('ici, this.interns : ', this.interns)
 
 
-    // Etape 2 : on envoie la nouvelle donnée au backend
+    // On envoie la nouvelle donnée au backend
     this._insternServ.postIntern(this.interns).subscribe((dataIntern: any) => {
       console.log('envoyé au backend: ' + dataIntern)
       if (dataIntern) {
-        // const snackBarRef = this._snackBar.open('Le stagiaire a été ajouté à la base de donnée avec succès', 'ok', { verticalPosition: 'top' })
-        // setTimeout(() => {
-        //   snackBarRef.dismiss();
-        //   location.reload();
-        // }, 4000);
+
+        // Si les infos ont bien été transmises au backend, on dit que c'est bon via une modale
         this._matDialog.open(ConfirmAddInternModalComponent, {
           enterAnimationDuration: '200ms',
           exitAnimationDuration: '100ms',
           maxWidth: '300px'
         })
 
+      } else {
+
+        // si ça n'est pas bon, on le dit par l'intermédiaire d'une snackbar
+        const snackBarRef = this._snackBar.open('Attention! Le stagiaire n\'a pas pu être ajouté correctement', 'ok', { verticalPosition: 'top' })
+
+        // On met un setTimout pour supprimer la snackbar automatiquement au bout de 5 secondes si l'utilisateur n'a pas appuyé sur 'ok' avant
+        setTimeout(() => {
+          snackBarRef.dismiss();
+        }, 5000);
       }
     })
 
   }
 
 
-  /** Cette méthode permet de filtrer les entrées du tableau pour les proposer titre par titre (mat-autocomplete)
-   * @param  {string} value
-   * @returns string
-   */
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    if (!this.titles) {
-      return []; // Retourne un tableau vide si this.titles est undefined
-    }
-
-    return this.titles.filter(title => title.toLowerCase().includes(filterValue));
-  }
-
-
-  
   /** Cette méthode permet de revenir sur la page d'accueil */
   onBackToHome() {
     this._route.navigate(['/home'])
@@ -159,9 +152,30 @@ export class AddInternComponent implements OnInit {
 
 
   /** Cette méthode permet d'aller sur la page pour éditer les documents des stagiaires */
-  onGoToEdit(){
+  onGoToEdit() {
     this._route.navigate(['/home/documents_stagiaire'])
   }
+
+
+
+  /** Cette méthode est lié au mat-autocomplete. Elle agit comme un filtre. D'abord, elle propose toutes les valeurs puis, en fonction de ce qui est tapé par l'utilisateur, les données proposées vont diminuer.
+   * @param  {string} value
+   * @returns string
+   */
+  private _filter(value: string): string[] {
+
+    // pour que le style de texte n'est pas d'impact lorsqu'on tape la donnée.
+    const filterValue = value.toLowerCase();
+
+    // On met une condition pour que la fonction marche même s'il manque la donnée à transmettre.
+    if (!this.titles) {
+      return []; // Retourne un tableau vide si this.titles est undefined
+    }
+
+    // Voila ce que fait la fonction. Filtre en fonction de ce que l'utilisateur tape.
+    return this.titles.filter(title => title.toLowerCase().includes(filterValue));
+  }
+
 
 
   /** Cette méthode permet de renvoyer les dates en format JJ/MM/AAAA en base de données.
