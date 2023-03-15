@@ -19,16 +19,16 @@ export class ProgPDFComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('idList :', this.idList);
+    // console.log('idList :', this.idList);
 
     /** En fonction de l'id du programme récupéré dans le localstorage (transmis de la page des programmes), on récupère toutes les information de ce programme pour les afficher.
      * @param  {} this.idList
      * @param  {Programs} .subscribe((returnProgram
      */
     this._progService.getOneList(this.idList).subscribe((returnProgram: Programs)=>{
-      console.log(returnProgram);
+      // console.log(returnProgram);
       this.program = returnProgram;
-      console.log('le programme : ' + this.program);
+      // console.log('le programme : ' + this.program);
     })
 
   }

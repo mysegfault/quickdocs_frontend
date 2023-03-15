@@ -45,9 +45,8 @@ export class DocInternComponent implements OnInit {
 
     // Pour le mat-autocomplete : On récupère les codes de stagiaires pour les proposer dans le champs "code du stagiaires".
     this._insternServ.getAllCodeIntern().subscribe((codeFromBackend: any) => {
-      console.log('liste des codes:', codeFromBackend);
+      // console.log('liste des codes:', codeFromBackend);
       this.allCodesIntern = codeFromBackend;
-      console.log(this.allCodesIntern);
       // Pour avoir chaque code, on map
       this.codes = this.allCodesIntern.map(tab => tab[0])
       // Le commentaire ci-dessous sert à indiquer au compilateur TypeScript d'ignorer l'erreur de vérification de type pour cette ligne de code.
@@ -59,13 +58,6 @@ export class DocInternComponent implements OnInit {
       );
     })
 
-
-    // On récupère les titres de chaques programmes pour comparer quand l'utilisateur aura validé le champs.
-    // this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
-    //   console.log(listsFromBackend);
-    //   this.allTitlesPrograms = listsFromBackend;
-    // })
-
   }
 
   /** Cette méthode permet de récupérer les infos de l'utilisateurs puis les infos de la formation, grâce au champ "Intitulé de la formation" pour transférer les infos utiles au template à éditer. */
@@ -76,29 +68,18 @@ export class DocInternComponent implements OnInit {
 
     // On récupère les valeurs du formulaire dans un tableau d'objets
     const form = this.verifForm.value;
-    console.log('ici, form : ', form);
+    // console.log('ici, form : ', form);
 
     // On envoie le code du stagiaire (récupéré dans le champ) au backend pour recevoir son id :
     this._insternServ.postFindIntern(form).subscribe((resIdIntern: any) => {
-      console.log('data recu du backend: ' + resIdIntern)
+      // console.log('data recu du backend: ' + resIdIntern)
       this.idIntern = resIdIntern;
-      console.log('idIntern :', this.idIntern);
-      // localStorage.setItem('internID', resIdIntern)
+      // console.log('idIntern :', this.idIntern);
 
-      // // Puis on récupère le nom de la formation pour le comparer au titre des programmes existant et ainsi réucpérer l'id du programmes qu'on stockera dans le localstorage pour afficher les données dans le template
       //  Puis, grâce à l'id du stagiaire, on récupère toutes ses informations pour le document à éditer.
       this._insternServ.getOneIntern(this.idIntern).subscribe((allDataFromIntern: any) => {
-        console.log('allDataIntern : ', allDataFromIntern);
+        // console.log("Toutes les données d'un stagiaire : ", this.allDataIntern);
         this.allDataIntern = allDataFromIntern;
-        console.log("Toutes les données d'un stagiaire : ", this.allDataIntern);
-        // this.formationSuivie = allDataFromIntern.intern_program;
-        // console.log("formation suivie : ", this.formationSuivie);
-
-        // on compare : 
-        // const indexProgram = this.allTitlesPrograms.findIndex((arr: any) => arr[0] === this.formationSuivie);
-        // console.log(indexProgram);
-        // // on stocke :
-        // localStorage.setItem('programIDwithStagiaire', indexProgram)
       })
 
     })
@@ -143,10 +124,10 @@ export class DocInternComponent implements OnInit {
    */
   onGenerateAttestationAssiduite() {
 
-    // On charge le modèle de document Word stocké sur ce chemin
+    // On charge le modèle fichier DOCX stocké sur ce chemin
     const file = `${window.location.origin}/assets/documents/attestation_assiduite.docx`;
 
-    // On crée une nouvelle instance de l'objet XMLHttpRequest, qui sera utilisé pour charger le modèle Word.
+    // On crée une nouvelle instance de l'objet XMLHttpRequest, qui sera utilisé pour charger le modèle fichier DOCX
     const xhr = new XMLHttpRequest();
     // On initialise la requête XMLHttpRequest en spécifiant la méthode HTTP (GET), l'URL du fichier (le chemin d'accès au modèle Word) et la valeur "true" pour indiquer que la requête est asynchrone.
     xhr.open('GET', file, true);
@@ -166,11 +147,11 @@ export class DocInternComponent implements OnInit {
       intern_duration: this.allDataIntern.intern_duration !== null ? this.allDataIntern.intern_duration : "",
       taux_realisation: this.allDataIntern.intern_achievement !== null ? this.allDataIntern.intern_achievement : ""
     }
-    console.log(dataIntern);
+    // console.log(dataIntern);
 
     // Lorsque XMLHttpRequest sera terminée, cette fonction de rappel sera exectuée :
     xhr.onload = () => {
-      console.log('Le modèle de document Word a été chargé avec succès.');
+      // console.log('Le modèle de document Word a été chargé avec succès.');
 
       // On crée un nouveau tableau d'octets (Uint8Array) à partir des données renvoyées par le serveur dans xhr.response
       const data = new Uint8Array(xhr.response);
@@ -187,19 +168,19 @@ export class DocInternComponent implements OnInit {
       try {
         // On génère le document Word final
         doc.render();
-        console.log('Le document a été généré avec succès.');
+        // console.log('Le document a été généré avec succès.');
         // On récupère le contenu du fichier ZIP généré par Docxtemplater et le stocke dans un objet blob (Blob).
         // Blob est un objet JavaScript qui représente un fichier binaire brut.
         const output = doc.getZip().generate({ type: 'blob' });
-        console.log(output);
+        // console.log(output);
         // On crée un nom de fichier
         const filename = `Attestation_assiduite_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
         // On télécharge le fichier Word généré en utilisant la fonction saveAs fournie par la bibliothèque FileSaver.js.
         saveAs(output, filename);
 
       } catch (error) {
-        console.log(JSON.stringify({ error }));
+        // console.log(JSON.stringify({ error }));
         throw error;
       }
     };
@@ -233,10 +214,10 @@ export class DocInternComponent implements OnInit {
       intern_duration: this.allDataIntern.intern_duration !== null ? this.allDataIntern.intern_duration : "",
       taux_realisation: this.allDataIntern.intern_achievement !== null ? this.allDataIntern.intern_achievement : ""
     }
-    console.log(dataIntern);
+    // console.log(dataIntern);
 
     xhr.onload = () => {
-      console.log('Le modèle de document Word a été chargé avec succès.');
+      // console.log('Le modèle de document Word a été chargé avec succès.');
 
       const data = new Uint8Array(xhr.response);
       const zip = new PizZip(data);
@@ -246,15 +227,15 @@ export class DocInternComponent implements OnInit {
 
       try {
         doc.render();
-        console.log('Le document a été généré avec succès.');
+        // console.log('Le document a été généré avec succès.');
         const output = doc.getZip().generate({ type: 'blob' });
-        console.log(output);
+        // console.log(output);
         const filename = `Certificat_realisation_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
         saveAs(output, filename);
 
       } catch (error) {
-        console.log(JSON.stringify({ error }));
+        // console.log(JSON.stringify({ error }));
         throw error;
       }
     };
@@ -296,10 +277,10 @@ export class DocInternComponent implements OnInit {
       accompt: this.allDataIntern.deposit !== null ? this.allDataIntern.deposit : "",
       convention_date: this.allDataIntern.convention_date !== null ? this.allDataIntern.convention_date : "",
     }
-    console.log(dataIntern);
+    // console.log(dataIntern);
 
     xhr.onload = () => {
-      console.log('Le modèle de document Word a été chargé avec succès.');
+      // console.log('Le modèle de document Word a été chargé avec succès.');
 
       const data = new Uint8Array(xhr.response);
       const zip = new PizZip(data);
@@ -309,15 +290,15 @@ export class DocInternComponent implements OnInit {
 
       try {
         doc.render();
-        console.log('Le document a été généré avec succès.');
+        // console.log('Le document a été généré avec succès.');
         const output = doc.getZip().generate({ type: 'blob' });
-        console.log(output);
+        // console.log(output);
         const filename = `Convention_formation_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
         saveAs(output, filename);
 
       } catch (error) {
-        console.log(JSON.stringify({ error }));
+        // console.log(JSON.stringify({ error }));
         throw error;
       }
     };
@@ -347,10 +328,10 @@ export class DocInternComponent implements OnInit {
       funder: this.allDataIntern.intern_finance !== null ? this.allDataIntern.intern_finance : "",
       first_training_date: this.allDataIntern.first_training_date !== null ? this.allDataIntern.first_training_date : "",
     }
-    console.log(dataIntern);
+    // console.log(dataIntern);
 
     xhr.onload = () => {
-      console.log('Le modèle de document Word a été chargé avec succès.');
+      // console.log('Le modèle de document Word a été chargé avec succès.');
 
       const data = new Uint8Array(xhr.response);
       const zip = new PizZip(data);
@@ -360,15 +341,15 @@ export class DocInternComponent implements OnInit {
 
       try {
         doc.render();
-        console.log('Le document a été généré avec succès.');
+        // console.log('Le document a été généré avec succès.');
         const output = doc.getZip().generate({ type: 'blob' });
-        console.log(output);
+        // console.log(output);
         const filename = `Feuille_emargement_individuelle_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
         saveAs(output, filename);
 
       } catch (error) {
-        console.log(JSON.stringify({ error }));
+        // console.log(JSON.stringify({ error }));
         throw error;
       }
     };

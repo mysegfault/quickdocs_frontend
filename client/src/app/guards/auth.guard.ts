@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
      
-      console.log('auth guard', route, state)
+      // console.log('auth guard', route, state)
 
       // On récupère le token pour avoir accès aux autres pages.
       const token = this._authService.getToken()

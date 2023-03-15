@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    console.log('request auth interceptor', request.url)
+    // console.log('request auth interceptor', request.url)
 
     // On récupère le token 
     const token = this._authService.getToken()

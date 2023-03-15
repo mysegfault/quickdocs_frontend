@@ -87,7 +87,7 @@ export class AddInternComponent implements OnInit {
 
     // On récupère les titres de chaque programmes pour les proposer dans le champs "intitulé de la formation suivie" (lié au mat-autocomplete)
     this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
-      console.log('tableau des titres :', listsFromBackend);
+      // console.log('tableau des titres :', listsFromBackend);
       this.allTitlesPrograms = listsFromBackend;
       // console.log(this.allTitlesPrograms);
       // Pour avoir chaques titres
@@ -111,16 +111,16 @@ export class AddInternComponent implements OnInit {
 
     // On récupère les valeurs du formulaire dans un tableau d'objets
     const formInt = this.internForm.value;
-    console.log('ici, formInt : ', formInt);
+    // console.log('ici, formInt : ', formInt);
 
     // Puis on les met dans un objet pour les envoyer au backend
     this.interns = Object.assign(this.interns, formInt)
-    console.warn('ici, this.interns : ', this.interns)
+    // console.warn('ici, this.interns : ', this.interns)
 
 
     // On envoie la nouvelle donnée au backend
     this._insternServ.postIntern(this.interns).subscribe((dataIntern: any) => {
-      console.log('envoyé au backend: ' + dataIntern)
+      // console.log('envoyé au backend: ' + dataIntern)
       if (dataIntern) {
 
         // Si les infos ont bien été transmises au backend, on dit que c'est bon via une modale

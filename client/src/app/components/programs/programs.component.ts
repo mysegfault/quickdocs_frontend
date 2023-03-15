@@ -25,7 +25,7 @@ export class ProgramsComponent implements OnInit {
 
     // On récupère les titres de chaques programmes
     this._programServ.getAllLists().subscribe((listsFromBackend: any[]) => {
-      console.log(listsFromBackend);
+      // console.log('listsFromBackend : ' , listsFromBackend);
       this.allList = listsFromBackend;
     })
 
@@ -45,11 +45,11 @@ export class ProgramsComponent implements OnInit {
     // On récupère l'id du programme sélectionner
     // On ajuste l'index à +2 car : +1 pour les index de tableau quiccommence à 0 a lors que la feuille de calcul commence à 1 et +1 car la première lignes de cette feuille de calcul commence par les titres.
     const idList = i + 2;
-    console.log('idList : ', idList);
+    // console.log('idList : ', idList);
 
     // Puis on récupère toutes les informations lié à cette id de programme.
     this._programServ.getOneList(idList).subscribe((returnProgram: Programs) => {
-      console.log(returnProgram);
+      // console.log(returnProgram);
       this.program = returnProgram;
 
 
@@ -89,11 +89,11 @@ export class ProgramsComponent implements OnInit {
         access: this.program.cont_accessibilite !== null ? this.program.cont_accessibilite : "",
         program_delay: this.program.cont_delai !== null ? this.program.cont_delai : "",
       }
-      console.log(dataProgram);
+      // console.log(dataProgram);
 
       // Lorsque XMLHttpRequest sera terminée, cette fonction de rappel sera exectuée :
       xhr.onload = () => {
-        console.log('Le modèle de document Word a été chargé avec succès.');
+        // console.log('Le modèle de document Word a été chargé avec succès.');
 
         // On crée un nouveau tableau d'octets (Uint8Array) à partir des données renvoyées par le serveur dans xhr.response
         const data = new Uint8Array(xhr.response);
@@ -110,19 +110,19 @@ export class ProgramsComponent implements OnInit {
         try {
           // On génère le document Word final
           doc.render();
-          console.log('Le document a été généré avec succès.');
+          // console.log('Le document a été généré avec succès.');
           // On récupère le contenu du fichier ZIP généré par Docxtemplater et le stocke dans un objet blob (Blob).
           // Blob est un objet JavaScript qui représente un fichier binaire brut.
           const output = doc.getZip().generate({ type: 'blob' });
-          console.log(output);
+          // console.log(output);
           // On crée un nom de fichier
           const filename = `Programme_${dataProgram.program_title}.docx`;
-          console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+          // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
           // On télécharge le fichier Word généré en utilisant la fonction saveAs fournie par la bibliothèque FileSaver.js.
           saveAs(output, filename);
 
         } catch (error) {
-          console.log(JSON.stringify({ error }));
+          // console.log(JSON.stringify({ error }));
           throw error;
         }
       };
