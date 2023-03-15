@@ -208,8 +208,7 @@ export class DocInternComponent implements OnInit {
       saveAs(output, filename);
 
     } catch (error) {
-
-      throw error;
+        throw error;
     }
 
   }
@@ -246,23 +245,23 @@ export class DocInternComponent implements OnInit {
     const response = await fetch(file);
     const data = await response.arrayBuffer();
 
-      const zip = new PizZip(data);
-      const doc = new Docxtemplater();
-      doc.loadZip(zip);
-      doc.setData(dataIntern);
+    const zip = new PizZip(data);
+    const doc = new Docxtemplater();
+    doc.loadZip(zip);
+    doc.setData(dataIntern);
 
-      try {
-        doc.render();
-        // console.log('Le document a été généré avec succès.');
-        const output = doc.getZip().generate({ type: 'blob' });
-        // console.log(output);
-        const filename = `Convention_formation_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
-        saveAs(output, filename);
+    try {
+      doc.render();
+      // console.log('Le document a été généré avec succès.');
+      const output = doc.getZip().generate({ type: 'blob' });
+      // console.log(output);
+      const filename = `Convention_formation_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
+      // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+      saveAs(output, filename);
 
-      } catch (error) {
+    } catch (error) {
         throw error;
-      }
+    }
 
   }
 
@@ -270,7 +269,7 @@ export class DocInternComponent implements OnInit {
   /** Cette méthode permet de générer une feuille d'émargement individuelle (format .docx) au clique sur le lien en HTML
      */
   async onGenerateEmargement() {
-    
+
     const dataIntern = {
       lastname: this.allDataIntern.intern_lastname !== null ? this.allDataIntern.intern_lastname : "",
       firstname: this.allDataIntern.intern_firstname !== null ? this.allDataIntern.intern_firstname : "",
@@ -286,23 +285,23 @@ export class DocInternComponent implements OnInit {
     const response = await fetch(file);
     const data = await response.arrayBuffer();
 
-      const zip = new PizZip(data);
-      const doc = new Docxtemplater();
-      doc.loadZip(zip);
-      doc.setData(dataIntern);
+    const zip = new PizZip(data);
+    const doc = new Docxtemplater();
+    doc.loadZip(zip);
+    doc.setData(dataIntern);
 
-      try {
-        doc.render();
-        // console.log('Le document a été généré avec succès.');
-        const output = doc.getZip().generate({ type: 'blob' });
-        // console.log(output);
-        const filename = `Feuille_emargement_individuelle_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
-        saveAs(output, filename);
+    try {
+      doc.render();
+      // console.log('Le document a été généré avec succès.');
+      const output = doc.getZip().generate({ type: 'blob' });
+      // console.log(output);
+      const filename = `Feuille_emargement_individuelle_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
+      // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+      saveAs(output, filename);
 
-      } catch (error) {
+    } catch (error) {
         throw error;
-      }
+    }
 
   }
 

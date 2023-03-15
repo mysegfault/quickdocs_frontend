@@ -42,30 +42,18 @@ export class ProgramsComponent implements OnInit {
   /** Cette méthode permet de générer le programme en format .docx grâce à un template contenu dans assets/programmes */
   onGenerateProgram(i: number) {
 
-    // On récupère l'id du programme sélectionner
+    // On récupère l'id du programme sélectionné
     // On ajuste l'index à +2 car : +1 pour les index de tableau quiccommence à 0 a lors que la feuille de calcul commence à 1 et +1 car la première lignes de cette feuille de calcul commence par les titres.
     const idList = i + 2;
     // console.log('idList : ', idList);
 
     // Puis on récupère toutes les informations lié à cette id de programme.
-    this._programServ.getOneList(idList).subscribe((returnProgram: Programs) => {
+    this._programServ.getOneList(idList).subscribe(async (returnProgram: Programs) => {
       // console.log(returnProgram);
       this.program = returnProgram;
 
 
-
-
-      // Ensuite, on charge le modèle de document Word stocké sur ce chemin
-      const file = `${window.location.origin}/assets/programmes/Programme_les_bases_de_la_photographie.docx`;
-
-      // On crée une nouvelle instance de l'objet XMLHttpRequest, qui sera utilisé pour charger le modèle Word.
-      const xhr = new XMLHttpRequest();
-      // On initialise la requête XMLHttpRequest en spécifiant la méthode HTTP (GET), l'URL du fichier (le chemin d'accès au modèle Word) et la valeur "true" pour indiquer que la requête est asynchrone.
-      xhr.open('GET', file, true);
-      // On spécifie le type de réponse que le serveur doit renvoyer, ici 'arraybuffer'(= objet JavaScript qui représente un tableau d'octets, des données). Le contenu du modèle Word pourra être stocké dans un tableau d'octets (Uint8Array).
-      xhr.responseType = 'arraybuffer';
-
-      // On défintit, dans un objet, les données que l'on souhaite insérer :
+      // On définit, dans un objet, les données que l'on souhaite insérer :
       const dataProgram = {
         program_title: this.program.titre_programme !== null ? this.program.titre_programme : "",
         program_format: this.program.chapeau_titre !== null ? this.program.chapeau_titre : "",
@@ -89,76 +77,65 @@ export class ProgramsComponent implements OnInit {
         access: this.program.cont_accessibilite !== null ? this.program.cont_accessibilite : "",
         program_delay: this.program.cont_delai !== null ? this.program.cont_delai : "",
       }
-      // console.log(dataProgram);
 
-      // Lorsque XMLHttpRequest sera terminée, cette fonction de rappel sera exectuée :
-      xhr.onload = () => {
-        // console.log('Le modèle de document Word a été chargé avec succès.');
+      // On récupère le contenu du template
+      const file = `${window.location.origin}/assets/programmes/Programme_les_bases_de_la_photographie.docx`;
+      const response = await fetch(file);
+      const data = await response.arrayBuffer();
 
-        // On crée un nouveau tableau d'octets (Uint8Array) à partir des données renvoyées par le serveur dans xhr.response
-        const data = new Uint8Array(xhr.response);
-        // On crée une nouvelle instance de la classe PizZip en utilisant le tableau d'octets data.
-        // PizZip est une bibliothèque JavaScript qui permet de créer, lire et modifier des fichiers ZIP en mémoire.
-        const zip = new PizZip(data);
-        // On crée une nouvelle instance de la classe Docxtemplater.
-        const doc = new Docxtemplater();
-        // On charge le contenu du fichier ZIP en mémoire
-        doc.loadZip(zip);
-        // On définit les données à insérer dynamiquement
-        doc.setData(dataProgram);
+      // On crée une nouvelle instance de la classe PizZip en utilisant le tableau d'octets data.
+      // PizZip est une bibliothèque JavaScript qui permet de créer, lire et modifier des fichiers ZIP en mémoire.
+      const zip = new PizZip(data);
+      // On crée une nouvelle instance de la classe Docxtemplater.
+      const doc = new Docxtemplater();
+      // On charge le contenu du fichier ZIP en mémoire
+      doc.loadZip(zip);
+      // On définit les données à insérer dynamiquement
+      doc.setData(dataProgram);
 
-        try {
-          // On génère le document Word final
-          doc.render();
-          // console.log('Le document a été généré avec succès.');
-          // On récupère le contenu du fichier ZIP généré par Docxtemplater et le stocke dans un objet blob (Blob).
-          // Blob est un objet JavaScript qui représente un fichier binaire brut.
-          const output = doc.getZip().generate({ type: 'blob' });
-          // console.log(output);
-          // On crée un nom de fichier
-          const filename = `Programme_${dataProgram.program_title}.docx`;
-          // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
-          // On télécharge le fichier Word généré en utilisant la fonction saveAs fournie par la bibliothèque FileSaver.js.
-          saveAs(output, filename);
+      try {
+        // On génère le document Word final
+        doc.render();
+        // console.log('Le document a été généré avec succès.');
+        // On récupère le contenu du fichier ZIP généré par Docxtemplater et le stocke dans un objet blob (Blob).
+        // Blob est un objet JavaScript qui représente un fichier binaire brut.
+        const output = doc.getZip().generate({ type: 'blob' });
+        // console.log(output);
+        // On crée un nom de fichier
+        const filename = `Programme_${dataProgram.program_title}.docx`;
+        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+        // On télécharge le fichier Word généré en utilisant la fonction saveAs fournie par la bibliothèque FileSaver.js.
+        saveAs(output, filename);
 
-        } catch (error) {
-          // console.log(JSON.stringify({ error }));
+      } catch (error) {
           throw error;
-        }
-      };
+      }
 
-      // On envoie la requête XMLHttpRequest au serveur pour charger le contenu du modèle Word.
-      xhr.send();
 
     })
-
-
-
-    // /** Cette méthode est situé sur le bouton du router "ouvrir" et elle permet de ne plus afficher la liste des programmes */
-    // onOpenProgram(i: number) {
-
-    //   // On ajuste l'index à +2 car : +1 pour les index de tableau quiccommence à 0 a lors que la feuille de calcul commence à 1 et +1 car la première lignes de cette feuille de calcul commence par les titres.
-    //   const idList = i + 2;
-    //   console.log(idList);
-    //   const programID = JSON.stringify(idList)
-
-    //   // On stocke l'id dans le localstorage pour le récupérer pour la page programme_pdf
-    //   localStorage.setItem('programID', programID)
-    //   // Puis on redirige vers la page du programmes à imprimer
-    //   this._route.navigate(['/programme_pdf'])
-
-    // }
 
   }
 
 
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+  // /** Cette méthode est situé sur le bouton du router "ouvrir" et elle permet de ne plus afficher la liste des programmes */
+  // onOpenProgram(i: number) {
+
+  //   // On ajuste l'index à +2 car : +1 pour les index de tableau quiccommence à 0 a lors que la feuille de calcul commence à 1 et +1 car la première lignes de cette feuille de calcul commence par les titres.
+  //   const idList = i + 2;
+  //   console.log(idList);
+  //   const programID = JSON.stringify(idList)
+
+  //   // On stocke l'id dans le localstorage pour le récupérer pour la page programme_pdf
+  //   localStorage.setItem('programID', programID)
+  //   // Puis on redirige vers la page du programmes à imprimer
+  //   this._route.navigate(['/programme_pdf'])
+
+  // }
