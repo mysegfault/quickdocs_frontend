@@ -165,24 +165,23 @@ export class DocInternComponent implements OnInit {
       // On définit les données à insérer dynamiquement
       doc.setData(dataIntern);
 
-      try {
-        // On génère le document Word final
-        doc.render();
-        // console.log('Le document a été généré avec succès.');
-        // On récupère le contenu du fichier ZIP généré par Docxtemplater et le stocke dans un objet blob (Blob).
-        // Blob est un objet JavaScript qui représente un fichier binaire brut.
-        const output = doc.getZip().generate({ type: 'blob' });
-        // console.log(output);
-        // On crée un nom de fichier
-        const filename = `Attestation_assiduite_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
-        // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
-        // On télécharge le fichier Word généré en utilisant la fonction saveAs fournie par la bibliothèque FileSaver.js.
-        saveAs(output, filename);
-
-      } catch (error) {
-        // console.log(JSON.stringify({ error }));
-        throw error;
-      }
+        try {
+          // On génère le document Word final
+          doc.render();
+          // console.log('Le document a été généré avec succès.');
+          // On récupère le contenu du fichier ZIP généré par Docxtemplater et le stocke dans un objet blob (Blob).
+          // Blob est un objet JavaScript qui représente un fichier binaire brut.
+          const output = doc.getZip().generate({ type: 'blob' });
+          // console.log(output);
+          // On crée un nom de fichier
+          const filename = `Attestation_assiduite_${dataIntern.firstname}_${dataIntern.lastname}_${dataIntern.program_title}.docx`;
+          // console.log(`Le fichier ${filename} a été téléchargé avec succès.`);
+          // On télécharge le fichier Word généré en utilisant la fonction saveAs fournie par la bibliothèque FileSaver.js.
+          saveAs(output, filename);
+        } catch (error) {
+          // console.log(JSON.stringify({ error }));
+          throw error;
+        }
     };
 
     // On envoie la requête XMLHttpRequest au serveur pour charger le contenu du modèle Word.
@@ -195,14 +194,13 @@ export class DocInternComponent implements OnInit {
 
   /** Cette méthode permet de générer le certificat de réalisation (format .docx) au clique sur le lien en HTML
    */
-  onGenerateCertificat() {
+  async onGenerateCertificat() {
 
-    const file = `${window.location.origin}/assets/documents/certificat_de_realisation.docx`;
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', file, true);
-    xhr.responseType = 'arraybuffer';
-
+    
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('GET', file, true);
+    // xhr.responseType = 'arraybuffer';
+    
     const dataIntern = {
       genre: this.allDataIntern.intern_genre !== null ? this.allDataIntern.intern_genre : "",
       lastname: this.allDataIntern.intern_lastname !== null ? this.allDataIntern.intern_lastname : "",
@@ -215,11 +213,16 @@ export class DocInternComponent implements OnInit {
       taux_realisation: this.allDataIntern.intern_achievement !== null ? this.allDataIntern.intern_achievement : ""
     }
     // console.log(dataIntern);
+    
+    const file = `${window.location.origin}/assets/documents/certificat_de_realisation.docx`;
 
-    xhr.onload = () => {
+    const response = await fetch(file);
+    const data = await response.arrayBuffer();
+
+    // xhr.onload = () => {
       // console.log('Le modèle de document Word a été chargé avec succès.');
 
-      const data = new Uint8Array(xhr.response);
+      // const data = new Uint8Array(xhr.response);
       const zip = new PizZip(data);
       const doc = new Docxtemplater();
       doc.loadZip(zip);
@@ -238,9 +241,9 @@ export class DocInternComponent implements OnInit {
         // console.log(JSON.stringify({ error }));
         throw error;
       }
-    };
+    // };
 
-    xhr.send();
+    // xhr.send();
 
   }
 
