@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,9 +32,9 @@ export class LoginComponent implements OnInit {
      * @param  {any} userGoogle (infos de l'utilisateur google)
      */
     this._authService.authState.subscribe((userGoogle) => {
-
+      // on récupère les information de la personne qui essaye de s'authentifier avec Google
       this.user = userGoogle; // De class SocialUser de Google.
-      this.name = this.user.name;
+      // on prend son id et le token pour la suite
       this.google_id = this.user.id;
       this.googleToken = this.user.idToken
      
@@ -64,10 +63,12 @@ export class LoginComponent implements OnInit {
             }
           }
         } else {
-          // Si l'utilisateur n'est pas autorisé, renvoyez une snackbar lui expliquant qu'il n'a pas accès
+          this.authorizedUsers = false;
+          userGoogle == null;
+          
+          // L'utilisateur n'est pas autorisé, une snackbar est envoyé pour l'en informer
           this._snackBar.open("Désolée ! Vous n'êtes pas autorisé à accéder à cette application", 'ok', { verticalPosition: 'top' });
 
-          this.authorizedUsers = false;
           if (this.googleToken) {
             this.googleToken = "0";
           }
@@ -77,10 +78,10 @@ export class LoginComponent implements OnInit {
         }
       });
 
-       this.loggedIn = (userGoogle != null); // Connecté avec Google
+        // Si l'utilisateur fait partie des utilisateurs authorisé, alors il a le droit d'accéder à l'application
+        this.loggedIn = (userGoogle != null); // Connecté avec Google
     })
 
   }
-
 
 }
