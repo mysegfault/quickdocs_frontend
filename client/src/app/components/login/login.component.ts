@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.name = this.user.name;
       this.google_id = this.user.id;
       this.googleToken = this.user.idToken
-      this.loggedIn = (userGoogle != null); // Connecté avec Google
+     
 
 
       /** Puis, on fait appel au service que j'ai créer pour vérifier si l'utilisateur est dans la base de données des utilisateurs authorisés par le biais de son id google
@@ -76,6 +76,8 @@ export class LoginComponent implements OnInit {
           }
         }
       });
+
+       this.loggedIn = (userGoogle != null); // Connecté avec Google
     })
 
   }
