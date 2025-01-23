@@ -76,7 +76,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('659524719870-b9fnv4rch4mhiimo6aup8ufak43hes38.apps.googleusercontent.com')
+            provider: new GoogleLoginProvider('872406724714-a4n7pkq3viqeo6kbthelver4vjjodv09.apps.googleusercontent.com')
           }
         ],
         onError: (err) => {
